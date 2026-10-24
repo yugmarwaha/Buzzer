@@ -1,0 +1,224 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Pop Culture Pulse",
+    "description": "Movies, music, gaming, social media, and the moments everyone was talking about. How closely were you paying attention?",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "The word puzzle game Wordle was originally built by a software engineer as a gift for his partner — not as a product intended for the public.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the name of Taylor Swift's record-shattering 2023–2024 global concert tour?",
+      "config": {
+        "options": [
+          "The Reputation Tour",
+          "The Eras Tour",
+          "The Folklore Tour",
+          "The Fearless Tour"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "In July 2023, the films Barbie and Oppenheimer were released on the exact same day — a cultural moment quickly dubbed 'Barbenheimer.'",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which 2021 Netflix series became the platform's most-watched non-English language show of all time within weeks of its release?",
+      "config": {
+        "options": [
+          "Money Heist (La Casa de Papel)",
+          "Dark",
+          "Squid Game",
+          "Lupin"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "ChatGPT reached 100 million users in approximately two months — faster than any consumer application before it.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which actress performed the now-iconic Wednesday Addams dance that went massively viral in the 2022 Netflix series Wednesday?",
+      "config": {
+        "options": [
+          "Emma Myers",
+          "Joey King",
+          "Jenna Ortega",
+          "Millie Bobby Brown"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "Beyoncé's critically acclaimed 2022 solo studio album — her return to dance and electronic music — was titled what?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["Renaissance", "renaissance"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 2
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "The action RPG Elden Ring, developed by FromSoftware and George R. R. Martin, won Game of the Year at The Game Awards 2022.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "After Elon Musk acquired Twitter in 2022, he rebranded the platform to a single letter. What is it?",
+      "config": {
+        "options": [
+          "T",
+          "X",
+          "E",
+          "Z"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "Which film — a multiverse sci-fi comedy — won the Academy Award for Best Picture at the 95th Oscars ceremony in 2023? (Full title or common abbreviation accepted)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": [
+          "Everything Everywhere All at Once",
+          "everything everywhere all at once",
+          "EEAAO"
+        ],
+        "answerPoints": [1.0, 1.0, 1.0],
+        "editDistance": 3
+      },
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of these artists performed at the Super Bowl Halftime Show between 2020 and 2024? Select all that apply.",
+      "config": {
+        "options": [
+          "Jennifer Lopez (performed 2020)",
+          "Taylor Swift",
+          "The Weeknd (performed 2021)",
+          "Adele",
+          "Rihanna (performed 2023)"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following video games were released between 2021 and 2023? Select all that apply.",
+      "config": {
+        "options": [
+          "Elden Ring",
+          "Minecraft",
+          "The Last of Us Part II",
+          "Hogwarts Legacy",
+          "God of War: Ragnarök"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, -1.0, 1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these content formats do you regularly consume? Select all that apply.",
+      "config": {
+        "options": [
+          "Long-form YouTube videos (20+ min)",
+          "Short-form clips (TikTok / Reels / Shorts)",
+          "Podcasts",
+          "TV series on streaming platforms",
+          "Music playlists"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}

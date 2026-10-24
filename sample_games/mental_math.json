@@ -1,0 +1,289 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Mental Math Sprint",
+    "description": "Twenty quick-fire arithmetic questions worth different point values. No calculators — just your brain and the clock.",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "7 + 8 = ?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["15"],
+        "answerPoints": [1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 5,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "13 × 4 = ?",
+      "config": {
+        "options": ["42", "48", "52", "56"]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 2.0, 0.0]
+      },
+      "time_limit_seconds": 7,
+      "points_value": 2.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "144 ÷ 12 = 13",
+      "config": {},
+      "answer_data": {
+        "answer_points": { "true": 0.0, "false": 1.0 }
+      },
+      "time_limit_seconds": 6,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "25 × 8 = ?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["200"],
+        "answerPoints": [2.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 8,
+      "points_value": 2.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What is 15% of 200?",
+      "config": {
+        "options": ["20", "25", "30", "35"]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 3.0, 0.0]
+      },
+      "time_limit_seconds": 10,
+      "points_value": 3.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "√64 = ?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["8"],
+        "answerPoints": [1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 5,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "17 is a prime number.",
+      "config": {},
+      "answer_data": {
+        "answer_points": { "true": 1.0, "false": 0.0 }
+      },
+      "time_limit_seconds": 6,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "256 ÷ 16 = ?",
+      "config": {
+        "options": ["14", "16", "18", "20"]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 2.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 8,
+      "points_value": 2.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "3³ = ?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["27"],
+        "answerPoints": [1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 6,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "A shirt costs $40 and is discounted by 25%. What is the sale price?",
+      "config": {
+        "options": ["$25", "$28", "$30", "$32"]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 3.0, 0.0]
+      },
+      "time_limit_seconds": 12,
+      "points_value": 3.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "99 × 99 = ?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["9801"],
+        "answerPoints": [3.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 10,
+      "points_value": 3.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "2¹⁰ = 1024",
+      "config": {},
+      "answer_data": {
+        "answer_points": { "true": 2.0, "false": 0.0 }
+      },
+      "time_limit_seconds": 8,
+      "points_value": 2.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the remainder when 100 is divided by 7?",
+      "config": {
+        "options": ["1", "2", "5", "6"]
+      },
+      "answer_data": {
+        "answer_points": [3.0, 0.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 10,
+      "points_value": 3.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the greatest common divisor (GCD) of 48 and 36?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["12"],
+        "answerPoints": [3.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 12,
+      "points_value": 3.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "If you drive 60 miles at 40 mph, how many minutes does the trip take?",
+      "config": {
+        "options": ["75 minutes", "80 minutes", "90 minutes", "100 minutes"]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 3.0, 0.0]
+      },
+      "time_limit_seconds": 12,
+      "points_value": 3.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "The sum of the interior angles of any triangle is 180°.",
+      "config": {},
+      "answer_data": {
+        "answer_points": { "true": 1.0, "false": 0.0 }
+      },
+      "time_limit_seconds": 5,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "17 × 13 = ?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["221"],
+        "answerPoints": [3.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 10,
+      "points_value": 3.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "1/3 + 1/4 = ?",
+      "config": {
+        "options": ["2/7", "5/12", "7/12", "2/12"]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 2.0, 0.0]
+      },
+      "time_limit_seconds": 10,
+      "points_value": 2.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "A rectangle is 14 cm wide and 9 cm tall. What is its area in cm²?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["126"],
+        "answerPoints": [2.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 8,
+      "points_value": 2.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the least common multiple (LCM) of 6 and 8?",
+      "config": {
+        "options": ["12", "16", "24", "48"]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 2.0, 0.0]
+      },
+      "time_limit_seconds": 10,
+      "points_value": 2.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following numbers are prime? Select all that apply.",
+      "config": {
+        "options": ["51", "53", "57", "59", "63"]
+      },
+      "answer_data": {
+        "answer_points": [-1.0, 1.0, -1.0, 1.0, -1.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 2.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following fractions are equal to 1/2? Select all that apply.",
+      "config": {
+        "options": ["3/6", "4/9", "6/12", "5/11", "10/20"]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 15,
+      "points_value": 3.0
+    }
+  ]
+}

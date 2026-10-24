@@ -1,0 +1,222 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Living Room Showdown",
+    "description": "A quick party game of surprising facts, silly votes, and grid dance moves. No studying required.",
+    "max_players": 100
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which planet takes longer to spin once on its axis than to orbit the Sun once?",
+      "config": {
+        "options": [
+          "Mars",
+          "Venus",
+          "Jupiter",
+          "Earth"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "True or false: a group of owls is called a parliament.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "How many keys does a standard piano have? Type a number.",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": [
+          "88"
+        ],
+        "answerPoints": [
+          1.0
+        ],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of these countries have no coastline (are landlocked)? Select all that apply.",
+      "config": {
+        "options": [
+          "Switzerland",
+          "Portugal",
+          "Bolivia",
+          "Chile",
+          "Nepal"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          1.0,
+          -1.0,
+          1.0,
+          -1.0,
+          1.0
+        ]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 3.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Dance moves! Start at (0, 0). Step 3 left, 2 up, then 1 right. Where do you end up?",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": -2,
+          "y": 2
+        }
+      },
+      "time_limit_seconds": 30,
+      "points_value": 2.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Dance moves! Start at (1, −1). Double both coordinates, then step 2 down. Where are you?",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": 2,
+          "y": -4
+        }
+      },
+      "time_limit_seconds": 30,
+      "points_value": 2.0
+    },
+    {
+      "type": "closest_guess",
+      "grading_type": "ACCURACY",
+      "prompt": "How many bones are in an adult human body?",
+      "config": {},
+      "answer_data": {
+        "correct": 206,
+        "fullTolerance": 2,
+        "partialTolerance": 30
+      },
+      "time_limit_seconds": 30,
+      "points_value": 2.0
+    },
+    {
+      "type": "closest_guess",
+      "grading_type": "ACCURACY",
+      "prompt": "How tall is the Statue of Liberty, in meters, from the ground to the tip of the torch?",
+      "config": {
+        "unit": "m"
+      },
+      "answer_data": {
+        "correct": 93,
+        "fullTolerance": 5,
+        "partialTolerance": 30
+      },
+      "time_limit_seconds": 30,
+      "points_value": 2.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Best board game for a party?",
+      "config": {
+        "options": [
+          "Codenames",
+          "Monopoly",
+          "Uno",
+          "Pictionary"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "COMPLETENESS",
+      "prompt": "True or false: I have fallen asleep during a movie at the cinema.",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "What would you bring to a picnic? Select all that apply.",
+      "config": {
+        "options": [
+          "Sandwiches",
+          "Fruit",
+          "Board games",
+          "Speaker",
+          "Blanket"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "COMPLETENESS",
+      "prompt": "What is your go-to karaoke song?",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Frog hops! A frog starts at (−5, −5). Each hop moves it 2 right and 3 up. Where is it after 3 hops?",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "time_limit_seconds": 30,
+      "points_value": 2.0
+    },
+    {
+      "type": "closest_guess",
+      "grading_type": "COMPLETENESS",
+      "prompt": "How many cups of coffee or tea have you had today?",
+      "config": {
+        "unit": "cups"
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}

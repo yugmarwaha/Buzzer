@@ -1,0 +1,226 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Computer Networks: Core Concepts",
+    "description": "A short classroom review of the basics of computer networks: layers, addressing, and protocols.",
+    "max_players": 100
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which layer of the OSI model is responsible for routing packets between networks?",
+      "config": {
+        "options": [
+          "Data Link",
+          "Network",
+          "Transport",
+          "Session"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "TCP guarantees that data arrives in order and without loss.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What protocol translates domain names into IP addresses? (Use the acronym)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": [
+          "DNS"
+        ],
+        "answerPoints": [
+          1.0
+        ],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of these are application-layer protocols? Select all that apply.",
+      "config": {
+        "options": [
+          "HTTP",
+          "IP",
+          "SMTP",
+          "Ethernet",
+          "FTP"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          1.0,
+          -1.0,
+          1.0,
+          -1.0,
+          1.0
+        ]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "How many bits are in an IPv4 address?",
+      "config": {
+        "options": [
+          "16",
+          "32",
+          "64",
+          "128"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "UDP performs a handshake before it sends data.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 0.0,
+          "false": 1.0
+        }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which networking topic do you find hardest so far?",
+      "config": {
+        "options": [
+          "Subnetting",
+          "Routing algorithms",
+          "Transport protocols",
+          "Network security"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "COMPLETENESS",
+      "prompt": "I have set up a home or lab network myself.",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which tools have you used? Select all that apply.",
+      "config": {
+        "options": [
+          "ping",
+          "traceroute",
+          "Wireshark",
+          "nmap"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "COMPLETENESS",
+      "prompt": "In one word, how do you feel about this unit?",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Tap the grid point x = 3, y = -2 (the router).",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": 3,
+          "y": -2
+        }
+      },
+      "time_limit_seconds": 30,
+      "points_value": 2.0
+    },
+    {
+      "type": "closest_guess",
+      "grading_type": "ACCURACY",
+      "prompt": "How many usable host addresses does a /24 IPv4 subnet have?",
+      "config": {
+        "unit": "hosts"
+      },
+      "answer_data": {
+        "correct": 254,
+        "fullTolerance": 0,
+        "partialTolerance": 10
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Tap the grid to show your comfort with subnetting: left is lost, right is confident, up is very interested, down is not interested.",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "closest_guess",
+      "grading_type": "COMPLETENESS",
+      "prompt": "How many hours per week do you spend on networking homework?",
+      "config": {
+        "unit": "hours"
+      },
+      "answer_data": {},
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    }
+  ]
+}

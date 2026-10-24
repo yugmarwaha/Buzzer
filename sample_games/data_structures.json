@@ -1,0 +1,223 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Data Structures: Know Your Tools",
+    "description": "Stacks, queues, trees, graphs, and hash tables — the building blocks of every algorithm. Ten questions to see how well you know them.",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the average-case time complexity of looking up an element in a hash table by key?",
+      "config": {
+        "options": [
+          "O(log n)",
+          "O(n)",
+          "O(1)",
+          "O(n log n)"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "A stack follows Last-In, First-Out (LIFO) ordering — the most recently pushed item is always the first one popped.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In a valid binary search tree, every value stored in a node's LEFT subtree must satisfy which condition?",
+      "config": {
+        "options": [
+          "Greater than the node's value",
+          "Less than the node's value",
+          "Equal to the node's value",
+          "There is no constraint on the left subtree"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the time complexity of binary search on a sorted array of n elements? (Use Big-O notation)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["O(log n)", "O(log(n))", "O(logn)", "log n"],
+        "answerPoints": [1.0, 1.0, 1.0, 1.0],
+        "editDistance": 1
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Inserting a new node at the HEAD of a singly linked list is an O(1) operation.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In a max-heap, which element is always located at the root of the tree?",
+      "config": {
+        "options": [
+          "The smallest element",
+          "A randomly selected element",
+          "The most recently inserted element",
+          "The largest element"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 0.0, 1.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "A directed graph that contains no cycles is commonly called a ___. (Give the standard 3-letter abbreviation)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["DAG", "dag"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "When a dynamic array (e.g. Python list, Java ArrayList) runs out of capacity and doubles in size, the amortized time complexity of each append is ___. (Big-O notation)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["O(1)", "amortized O(1)"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 1
+      },
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "When two distinct keys produce the same index in a hash table, what is this situation called?",
+      "config": {
+        "options": [
+          "Cache miss",
+          "Stack overflow",
+          "Collision",
+          "Deadlock"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In the worst case — for example, when values are inserted in already-sorted order — an unbalanced binary search tree with n nodes degrades to a height of ___.",
+      "config": {
+        "options": [
+          "O(log n)",
+          "O(√n)",
+          "O(n log n)",
+          "O(n)"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 0.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following operations run in O(1) average-case time on a hash table? Select all that apply.",
+      "config": {
+        "options": [
+          "Insert a key-value pair",
+          "Find the minimum key",
+          "Look up a value by key",
+          "Delete a key-value pair",
+          "Iterate all keys in sorted order"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, 1.0, -1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following are self-balancing binary search tree variants? Select all that apply.",
+      "config": {
+        "options": [
+          "AVL tree",
+          "Hash map",
+          "Red-black tree",
+          "Trie",
+          "2-3 tree"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these data structures have you used in an actual project, assignment, or coding challenge? Select all that apply.",
+      "config": {
+        "options": [
+          "Stack or queue",
+          "Binary tree",
+          "Priority queue / heap",
+          "Graph (adjacency list or matrix)",
+          "Trie"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}

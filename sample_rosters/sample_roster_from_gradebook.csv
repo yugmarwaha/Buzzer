@@ -1,0 +1,17 @@
+Student,ID,SIS User ID,SIS Login ID,Section,Current Points,Final Points,Current Score,Unposted Current Score,Final Score,Unposted Final Score
+    Points Possible,,,,,(read only),(read only),(read only),(read only),(read only),(read only)
+"Penguin, Bold",999001,FAKE000001,boldpenguin@example.edu,EXAMPLE 100:DIS001 and EXAMPLE 100:LEC001,,,,,,
+"Otter, Clever",999002,FAKE000002,cleverotter@example.edu,EXAMPLE 100:DIS001 and EXAMPLE 100:LEC001,,,,,,
+"Badger, Grumpy",999003,FAKE000003,grumpybadger@example.edu,EXAMPLE 100:DIS002 and EXAMPLE 100:LEC001,,,,,,
+"Flamingo, Lazy",999004,FAKE000004,lazyflamingo@example.edu,EXAMPLE 100:DIS002 and EXAMPLE 100:LEC001,,,,,,
+"Weasel, Sneaky",999005,FAKE000005,sneakyweasel@example.edu,EXAMPLE 100:DIS003 and EXAMPLE 100:LEC001,,,,,,
+"Hedgehog, Brave",999006,FAKE000006,bravehedgehog@example.edu,EXAMPLE 100:DIS003 and EXAMPLE 100:LEC001,,,,,,
+"Raccoon, Curious",999007,FAKE000007,curiousraccoon@example.edu,EXAMPLE 100:DIS004 and EXAMPLE 100:LEC001,,,,,,
+"Capybara, Daring",999008,FAKE000008,daringcapybara@example.edu,EXAMPLE 100:DIS004 and EXAMPLE 100:LEC001,,,,,,
+"Platypus, Eager",999009,FAKE000009,eagerplatypus@example.edu,EXAMPLE 100:DIS005 and EXAMPLE 100:LEC002,,,,,,
+"Mongoose, Fierce",999010,FAKE000010,fiercem@example.edu,EXAMPLE 100:DIS005 and EXAMPLE 100:LEC002,,,,,,
+"Narwhal, Gentle",999011,FAKE000011,gentlenarwhal@example.edu,EXAMPLE 100:DIS006 and EXAMPLE 100:LEC002,,,,,,
+"Quokka, Happy",999012,FAKE000012,happyquokka@example.edu,EXAMPLE 100:DIS006 and EXAMPLE 100:LEC002,,,,,,
+"Axolotl, Jolly",999013,FAKE000013,jollyaxolotl@example.edu,EXAMPLE 100:DIS007 and EXAMPLE 100:LEC002,,,,,,
+"Marmot, Kind",999014,FAKE000014,kindmarmot@example.edu,EXAMPLE 100:DIS007 and EXAMPLE 100:LEC002,,,,,,
+"Pangolin, Lively",999015,FAKE000015,livelypangolin@example.edu,EXAMPLE 100:DIS008 and EXAMPLE 100:LEC002,,,,,,

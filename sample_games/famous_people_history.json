@@ -1,0 +1,169 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Famous People Throughout History",
+    "description": "Trivia and discussion questions spanning ancient rulers, Renaissance geniuses, revolutionary scientists, and modern pioneers. Covers all question types with both accuracy and participation grading.",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which scientist developed the theory of general relativity?",
+      "config": {
+        "options": ["Isaac Newton", "Nikola Tesla", "Albert Einstein", "Galileo Galilei"]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 2.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 2.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which pharaoh commissioned the construction of the Great Pyramid of Giza?",
+      "config": {
+        "options": ["Ramesses II", "Tutankhamun", "Cleopatra VII", "Khufu"]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 0.0, 2.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 2.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these historical figures would you most want to have dinner with?",
+      "config": {
+        "options": ["Cleopatra", "Napoleon Bonaparte", "Marie Curie", "Abraham Lincoln"]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Cleopatra was Egyptian by birth.",
+      "config": {},
+      "answer_data": {
+        "answer_points": { "true": 0.0, "false": 2.0 }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 2.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Marie Curie was the first person ever to win two Nobel Prizes.",
+      "config": {},
+      "answer_data": {
+        "answer_points": { "true": 2.0, "false": 0.0 }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 2.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Before today, had you heard of Ada Lovelace — often called the world's first computer programmer?",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "In what year did Neil Armstrong become the first person to walk on the Moon?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["1969"],
+        "answerPoints": [2.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 20,
+      "points_value": 2.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "Name one of the two chemical elements discovered by Marie Curie.",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["polonium", "radium"],
+        "answerPoints": [2.0, 2.0],
+        "editDistance": 1
+      },
+      "time_limit_seconds": 25,
+      "points_value": 2.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "COMPLETENESS",
+      "prompt": "If you could ask one question to any historical figure, who would you choose and why?",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following were inventions or concepts attributed to Leonardo da Vinci? Select all that apply.",
+      "config": {
+        "options": [
+          "Flying machine",
+          "Steam engine",
+          "Armored vehicle",
+          "Telephone",
+          "Solar power concentrator"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following scientists won a Nobel Prize in Physics? Select all that apply.",
+      "config": {
+        "options": [
+          "Marie Curie",
+          "Albert Einstein",
+          "Charles Darwin",
+          "Niels Bohr",
+          "Gregor Mendel"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, 1.0, -1.0, 1.0, -1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these historical figures do you think had the greatest impact on the modern world? Select all that apply.",
+      "config": {
+        "options": [
+          "Johannes Gutenberg",
+          "Isaac Newton",
+          "Nikola Tesla",
+          "Ada Lovelace",
+          "Alexander Fleming"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}

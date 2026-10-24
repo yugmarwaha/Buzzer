@@ -1,0 +1,218 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "AI-Assisted Development with Claude Code",
+    "description": "Test your understanding of how to effectively use Claude Code as an AI development partner — concepts, best practices, and a few reflection questions.",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What filename do you create at the root of a project to give Claude Code persistent, project-specific instructions that load automatically every conversation?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["CLAUDE.md", "claude.md"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What does the /clear slash command do inside a Claude Code session?",
+      "config": {
+        "options": [
+          "Deletes any files Claude created during the session",
+          "Clears the conversation history to free up context window space",
+          "Removes Claude's memory files from your home directory",
+          "Signs you out of your Anthropic account"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Claude Code can execute shell commands, run your test suite, and install packages directly on your machine.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "When you start a Claude Code session, it reads every file in your project into its context before answering your first question.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 0.0,
+          "false": 1.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which best describes Claude Code's 'plan mode'?",
+      "config": {
+        "options": [
+          "A mode where Claude writes a project plan document for you to review",
+          "A read-only mode where Claude explores the codebase and proposes an approach before making any changes",
+          "A restricted mode that prevents Claude from running any shell commands",
+          "An automated mode that activates when a task touches more than five files"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Claude Code can create git commits and new branches on your behalf within your local repository.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "When working with Claude Code on a large, multi-step task, what is the recommended approach?",
+      "config": {
+        "options": [
+          "Give it the entire task at once and let it run completely uninterrupted",
+          "Break the work into logical steps, review changes at each checkpoint before continuing",
+          "Always write the code yourself first, then ask Claude to improve it",
+          "Avoid using Claude Code for any task that touches more than two files"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which developer skill becomes MORE important, not less, when you have AI assistance like Claude Code available?",
+      "config": {
+        "options": [
+          "Memorizing exact syntax and API method names",
+          "Knowing which specific files contain which functions",
+          "Critically reading and evaluating generated code for correctness and security",
+          "Typing speed and keyboard shortcuts"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which part of an AI-assisted development workflow have you personally found most valuable so far?",
+      "config": {
+        "options": [
+          "Generating boilerplate and scaffolding from scratch",
+          "Getting plain-English explanations of confusing code or error messages",
+          "Having Claude write and run tests automatically",
+          "Using Claude to review my code for bugs before I commit"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Complete this sentence honestly: \"The biggest mistake a developer can make when using Claude Code is...\"",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 40,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "In which of the following situations should you manually review Claude Code's output before accepting it? Select all that apply.",
+      "config": {
+        "options": [
+          "Before committing security-critical code changes",
+          "After asking Claude to explain what a simple function does",
+          "When Claude generates a database migration",
+          "When Claude suggests code that deletes or overwrites files",
+          "After running a basic npm install command"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, 1.0, -1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following are useful things to include when asking Claude Code to fix a bug? Select all that apply.",
+      "config": {
+        "options": [
+          "The exact error message or stack trace",
+          "The file path of the relevant code",
+          "Your entire git history for context",
+          "What you've already tried",
+          "A description of the expected vs. actual behavior"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, 1.0, -1.0, 1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 4.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these tasks have you actually tried using an AI coding tool for? Select all that apply.",
+      "config": {
+        "options": [
+          "Debugging error messages",
+          "Writing boilerplate or scaffolding",
+          "Understanding unfamiliar code",
+          "Writing unit tests",
+          "Refactoring existing code"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    }
+  ]
+}

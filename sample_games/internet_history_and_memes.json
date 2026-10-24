@@ -1,0 +1,218 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Internet History & Meme Origins",
+    "description": "From the first email to Baby Yoda — a tour through the weird, wonderful history of the internet and the culture it created.",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "The first email ever sent was sent by Ray Tomlinson in 1971, and he chose the '@' symbol to separate the username from the host computer.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What does GIF stand for?",
+      "config": {
+        "options": [
+          "Graphic Image File",
+          "Graphics Interchange Format",
+          "General Image Framework",
+          "Globally Indexed Format"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "The very first video uploaded to YouTube (April 2005) was a short clip of co-founder Jawed Karim at the San Diego Zoo.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "The 'Rickrolling' internet prank tricks someone into clicking a link that plays 'Never Gonna Give You Up' by which artist? (First and last name)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["Rick Astley", "rick astley"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 2
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Google's name originated as a misspelling of 'googol' — the mathematical term for the number 1 followed by 100 zeros.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In what year did Apple release the original iPhone, fundamentally changing how people access the internet?",
+      "config": {
+        "options": [
+          "2005",
+          "2007",
+          "2009",
+          "2010"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "Jack Dorsey's very first tweet in 2006 read 'just setting up my ___' — naming the platform by its original codename. What was the word?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["twttr"],
+        "answerPoints": [1.0],
+        "editDistance": 1
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "The viral 'Keep Calm and Carry On' poster that spawned thousands of internet parodies was originally created by which government for which purpose?",
+      "config": {
+        "options": [
+          "The US government, to boost morale during the Great Depression",
+          "The British government, as a WWII motivational poster in 1939",
+          "A British design studio, as a satirical commentary in 2000",
+          "The Churchill War Rooms, as a souvenir for museum visitors"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Wikipedia was founded in 2001, meaning it is older than Facebook, YouTube, Twitter, and the iPhone.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these describes your current relationship with social media?",
+      "config": {
+        "options": [
+          "Chronically online — I check it constantly",
+          "Casual scroller — a few times a day",
+          "Mostly lurker — I watch but rarely post",
+          "I've successfully escaped its grasp"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following websites were launched BEFORE Facebook (February 2004)? Select all that apply.",
+      "config": {
+        "options": [
+          "Google (founded 1998)",
+          "YouTube (founded 2005)",
+          "MySpace (founded 2003)",
+          "Twitter (founded 2006)",
+          "Wikipedia (founded 2001)"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of these internet slang abbreviations emerged from early 2000s online chat and message boards? Select all that apply.",
+      "config": {
+        "options": [
+          "LOL (Laughing Out Loud)",
+          "YOLO (You Only Live Once)",
+          "ROFL (Rolling On the Floor Laughing)",
+          "FOMO (Fear Of Missing Out)",
+          "BRB (Be Right Back)"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which social media platforms do you actively use right now? Select all that apply.",
+      "config": {
+        "options": [
+          "Instagram",
+          "TikTok",
+          "X (formerly Twitter)",
+          "Reddit",
+          "LinkedIn"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Are You Smarter Than a 5th Grader?",
+    "description": "Math, science, history, geography, and grammar straight from elementary school. You learned all of this. We promise.",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is 7 × 8?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["56", "fifty-six", "fifty six"],
+        "answerPoints": [1.0, 1.0, 1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the capital city of Australia?",
+      "config": {
+        "options": [
+          "Sydney",
+          "Melbourne",
+          "Canberra",
+          "Brisbane"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the chemical formula for water?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["H2O", "h2o"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "How many sides does a hexagon have?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["6", "six"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In grammar, what do you call a word that modifies a verb, an adjective, or another word of the same kind? (Example: she runs quickly.)",
+      "config": {
+        "options": [
+          "Adjective",
+          "Conjunction",
+          "Adverb",
+          "Preposition"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "How many stars appear on the flag of the United States?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["50", "fifty"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Plants absorb a gas from the air to carry out photosynthesis. Which gas is it?",
+      "config": {
+        "options": [
+          "Oxygen",
+          "Nitrogen",
+          "Carbon dioxide",
+          "Hydrogen"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "In what year did World War II end?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["1945"],
+        "answerPoints": [1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of these is generally considered the longest river in the world?",
+      "config": {
+        "options": [
+          "Amazon",
+          "Mississippi",
+          "Nile",
+          "Yangtze"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which organelle is known as the 'powerhouse of the cell' because it produces most of the cell's energy?",
+      "config": {
+        "options": [
+          "Nucleus",
+          "Ribosome",
+          "Golgi apparatus",
+          "Mitochondria"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 0.0, 1.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following are planets in our solar system? Select all that apply.",
+      "config": {
+        "options": [
+          "Jupiter",
+          "Pluto",
+          "Saturn",
+          "Europa",
+          "Neptune"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following animals are mammals? Select all that apply.",
+      "config": {
+        "options": [
+          "Dolphin",
+          "Shark",
+          "Bat",
+          "Penguin",
+          "Whale"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these subjects did you enjoy most in elementary school? Select all that apply.",
+      "config": {
+        "options": [
+          "Math",
+          "Science",
+          "History / Social Studies",
+          "English / Language Arts",
+          "Art or Music"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}

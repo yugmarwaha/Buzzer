@@ -1,0 +1,219 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Classic Literature: Did You Actually Read It?",
+    "description": "Ten questions from the novels, plays, and poems that appear on every English class syllabus. No SparkNotes shortcuts here.",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "In George Orwell's 1984, what is the name of the all-seeing figurehead of the totalitarian Party whose face appears on posters throughout Oceania?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["Big Brother", "big brother"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 1
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "In Harper Lee's To Kill a Mockingbird, Atticus Finch is a doctor who volunteers to defend Tom Robinson, a Black man falsely accused of a crime.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 0.0,
+          "false": 1.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In Shakespeare's Romeo and Juliet, which two families are locked in a bitter feud?",
+      "config": {
+        "options": [
+          "Montague and Capulet",
+          "Verona and Milan",
+          "Benvolio and Tybalt",
+          "Hamlet and Fortinbras"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, 0.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In F. Scott Fitzgerald's The Great Gatsby, Gatsby stares longingly across the bay at a light on Daisy's dock. What color is that light?",
+      "config": {
+        "options": [
+          "Red",
+          "White",
+          "Green",
+          "Blue"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "In Mary Shelley's Frankenstein, the creature assembled and brought to life by Dr. Frankenstein is never given a name anywhere in the novel.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the full name of the cynical, teenage narrator and protagonist of J.D. Salinger's The Catcher in the Rye? (First and last name)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["Holden Caulfield", "holden caulfield", "Holden", "holden"],
+        "answerPoints": [1.0, 1.0, 1.0, 1.0],
+        "editDistance": 2
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In John Steinbeck's Of Mice and Men, what is the shared dream that keeps George and Lennie going?",
+      "config": {
+        "options": [
+          "To sail to California and start over",
+          "To own their own land, tend rabbits, and live off the fat of the land",
+          "To save enough money to bring Lennie's family from the South",
+          "To open a small restaurant in a city"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "Complete the famous opening line of Jane Austen's Pride and Prejudice: \"It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a ___.\" (one word)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["wife", "Wife"],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 1
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "In William Golding's Lord of the Flies, the boys stranded on the island are eventually rescued — a naval officer arrives at the very end of the novel.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In George Orwell's Animal Farm, which pig character represents Joseph Stalin and eventually seizes power over the farm?",
+      "config": {
+        "options": [
+          "Snowball",
+          "Boxer",
+          "Napoleon",
+          "Old Major"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following novels were written by Charles Dickens? Select all that apply.",
+      "config": {
+        "options": [
+          "A Tale of Two Cities",
+          "Great Expectations",
+          "Wuthering Heights",
+          "Oliver Twist",
+          "Jane Eyre"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, 1.0, -1.0, 1.0, -1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following statements about Shakespeare's Hamlet are true? Select all that apply.",
+      "config": {
+        "options": [
+          "Hamlet is a Prince of Denmark",
+          "Hamlet's father was murdered by his uncle Claudius",
+          "The play ends happily with Hamlet becoming king",
+          "Ophelia drowns during the events of the play",
+          "Hamlet's full name is revealed as William Hamlet in the original text"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, 1.0, -1.0, 1.0, -1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these classic books do you actually own a physical copy of? Select all that apply.",
+      "config": {
+        "options": [
+          "The Great Gatsby",
+          "To Kill a Mockingbird",
+          "1984",
+          "Of Mice and Men",
+          "Pride and Prejudice"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}

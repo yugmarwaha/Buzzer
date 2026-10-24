@@ -1,0 +1,218 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Food Myths & Kitchen Facts",
+    "description": "Half of what people 'know' about cooking is wrong. Can you separate kitchen wisdom from kitchen myth?",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Searing a steak at high heat 'seals in the juices,' keeping the meat moist.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 0.0,
+          "false": 1.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What does it mean to 'temper' chocolate when baking or candy-making?",
+      "config": {
+        "options": [
+          "Melt it very slowly in a double boiler to prevent burning",
+          "Heat and cool it to precise temperatures to form stable cocoa-butter crystals",
+          "Mix it with cream to create a smooth ganache",
+          "Add sugar gradually to balance bitterness"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Adding oil to your pasta water is an effective way to prevent the noodles from sticking together.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 0.0,
+          "false": 1.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "Scoville units are the standard measure of the ___ of chili peppers. (One word)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["heat", "spiciness", "hotness", "pungency"],
+        "answerPoints": [1.0, 1.0, 1.0, 1.0],
+        "editDistance": 2
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which cooking oil has the highest smoke point, making it the best choice for high-heat searing?",
+      "config": {
+        "options": [
+          "Extra-virgin olive oil",
+          "Butter",
+          "Avocado oil",
+          "Toasted sesame oil"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Brown eggs are more nutritious than white eggs.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 0.0,
+          "false": 1.0
+        }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "The technique of cooking vacuum-sealed food in a precisely temperature-controlled water bath is called ___ (a French term). (Two words)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["sous vide", "Sous Vide", "sous-vide"],
+        "answerPoints": [1.0, 1.0, 1.0],
+        "editDistance": 2
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Carrots were originally purple (and sometimes white or yellow) — the familiar orange variety was selectively cultivated in the Netherlands in the 17th century.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Umami is often called the fifth basic taste alongside sweet, sour, salty, and bitter. Which word best describes it?",
+      "config": {
+        "options": [
+          "Spicy",
+          "Creamy",
+          "Savory or meaty",
+          "Astringent"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Be honest — what's your real approach when a recipe says something takes 30 minutes?",
+      "config": {
+        "options": [
+          "I follow every step and time exactly as written",
+          "I read it once, then improvise based on vibes",
+          "I multiply the time by 1.5 and plan accordingly",
+          "I order delivery"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following foods are botanically classified as fruits? Select all that apply.",
+      "config": {
+        "options": [
+          "Tomato",
+          "Carrot",
+          "Avocado",
+          "Rhubarb",
+          "Cucumber"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of these cooking methods use DRY heat — no water, liquid, or steam? Select all that apply.",
+      "config": {
+        "options": [
+          "Roasting",
+          "Braising",
+          "Grilling",
+          "Steaming",
+          "Sautéing"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these kitchen myths did you believe before today? Be honest — select all that apply.",
+      "config": {
+        "options": [
+          "Searing meat 'seals in the juices'",
+          "Adding oil to pasta water prevents sticking",
+          "Brown eggs are more nutritious than white eggs",
+          "You should always rinse raw chicken before cooking",
+          "Carrots improve your eyesight"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Wait — Really?! Surprising Facts Trivia",
+    "description": "Ten facts that sound made-up but are absolutely true. Perfect for settling arguments at parties.",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Cleopatra lived closer in time to the Moon landing than to the construction of the Great Pyramid of Giza.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "How many hearts does an octopus have?",
+      "config": {
+        "options": [
+          "Two — one per side",
+          "Three — one main, two gill hearts",
+          "Four — one per limb pair",
+          "Just one, like most animals"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "By botanical definition, bananas are classified as berries — but strawberries are not.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "The Eiffel Tower is measurably taller in summer than in winter due to thermal expansion of its iron structure.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Oxford University began teaching students before the Aztec Empire existed.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What is Scotland's official national animal?",
+      "config": {
+        "options": [
+          "Red Deer",
+          "Scottish Wildcat",
+          "Unicorn",
+          "Golden Eagle"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Archaeologists have discovered honey in ancient Egyptian tombs that is over 3,000 years old and was still perfectly edible.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "How long did the Anglo-Zanzibar War of 1896 last — the shortest war ever recorded?",
+      "config": {
+        "options": [
+          "About 38 minutes",
+          "About 4 hours",
+          "About 2 days",
+          "About 1 week"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, 0.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Sharks have existed on Earth longer than trees have.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the collective noun for a group of flamingos? (One word)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["flamboyance"],
+        "answerPoints": [1.0],
+        "editDistance": 2
+      },
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following are also botanically classified as berries? Select all that apply.",
+      "config": {
+        "options": [
+          "Avocado",
+          "Raspberry",
+          "Watermelon",
+          "Strawberry",
+          "Pumpkin"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following surprising animal facts are actually true? Select all that apply.",
+      "config": {
+        "options": [
+          "Butterflies taste with their feet",
+          "Goldfish have a memory of only 3 seconds",
+          "A group of crows is called a 'murder'",
+          "Elephants are the only large land mammals that cannot jump",
+          "Ostriches bury their heads in the sand when scared"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, 1.0, -1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these surprising facts did you already know BEFORE today's game? Select all that apply.",
+      "config": {
+        "options": [
+          "Cleopatra lived closer in time to the Moon landing than to the pyramids",
+          "Sharks have existed longer than trees",
+          "Oxford University predates the Aztec Empire",
+          "Scotland's national animal is the unicorn",
+          "Bananas are botanically classified as berries"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}

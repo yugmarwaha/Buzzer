@@ -1,0 +1,229 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Group Chat Night",
+    "description": "A light party game for friends: guess, vote, and argue about everyday things.",
+    "max_players": 100
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which Italian city is the birthplace of modern pizza?",
+      "config": {
+        "options": [
+          "Rome",
+          "Naples",
+          "Milan",
+          "Venice"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Honey never spoils if you store it well.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "Which pet is the most common in homes in the United States, after dogs? (One word)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": [
+          "cat",
+          "cats"
+        ],
+        "answerPoints": [
+          1.0,
+          1.0
+        ],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of these are real flavors of Pringles? Select all that apply.",
+      "config": {
+        "options": [
+          "Sour Cream & Onion",
+          "Bubblegum",
+          "Barbecue",
+          "Chocolate Fudge",
+          "Original"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          1.0,
+          -1.0,
+          1.0,
+          -1.0,
+          1.0
+        ]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 3.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "How many players are on the court for one team in basketball?",
+      "config": {
+        "options": [
+          "4",
+          "5",
+          "6",
+          "7"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "A group of flamingos is called a flamboyance.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "What is the best snack for game night?",
+      "config": {
+        "options": [
+          "Popcorn",
+          "Chips",
+          "Candy",
+          "Fruit"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "COMPLETENESS",
+      "prompt": "I have sent a text to the wrong person.",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 12,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which activities would you do on a free weekend? Select all that apply.",
+      "config": {
+        "options": [
+          "Sleep in",
+          "Go hiking",
+          "Play video games",
+          "Cook",
+          "Watch movies"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Name your favorite movie snack.",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Treasure hunt! X marks the spot at x = -2, y = 4. Tap it.",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": -2,
+          "y": 4
+        }
+      },
+      "time_limit_seconds": 30,
+      "points_value": 2.0
+    },
+    {
+      "type": "closest_guess",
+      "grading_type": "ACCURACY",
+      "prompt": "How tall is the Eiffel Tower in meters, with its antenna?",
+      "config": {
+        "unit": "m"
+      },
+      "answer_data": {
+        "correct": 330,
+        "fullTolerance": 10,
+        "partialTolerance": 100
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Tap the grid for your party mood: left is cozy, right is wild, up is chatty, down is quiet.",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "closest_guess",
+      "grading_type": "COMPLETENESS",
+      "prompt": "How many hours do you sleep on a weekend night?",
+      "config": {
+        "unit": "hours"
+      },
+      "answer_data": {},
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    }
+  ]
+}

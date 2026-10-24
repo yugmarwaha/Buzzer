@@ -1,0 +1,193 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Day One: CS Student Snapshot",
+    "description": "A first-day ice-breaker to explore your interests, background, and goals as a CS student. Most questions have no wrong answer — just be honest!",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which area of computer science excites you most right now?",
+      "config": {
+        "options": [
+          "Artificial Intelligence & Machine Learning",
+          "Web & Mobile Apps",
+          "Cybersecurity",
+          "Systems, Networks & Infrastructure"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "How would you honestly describe your coding experience heading into this course?",
+      "config": {
+        "options": [
+          "Just starting out — this is pretty new to me",
+          "I know the basics of one or two languages",
+          "I've built a few real projects on my own",
+          "I'd consider myself an experienced developer"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "What kind of project would excite you most to build during your time here?",
+      "config": {
+        "options": [
+          "A polished mobile or web app",
+          "A multiplayer game",
+          "A data analysis or ML tool",
+          "Something low-level: an OS, compiler, or language"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "COMPLETENESS",
+      "prompt": "I have written code outside of class — just for fun or a personal project, not because it was assigned.",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "What's your biggest concern as you start this CS program?",
+      "config": {
+        "options": [
+          "The math and theory will be too hard",
+          "I'll feel behind compared to my peers",
+          "Balancing coursework with everything else in life",
+          "Figuring out what kind of CS career I actually want"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "How do you learn new technical skills best?",
+      "config": {
+        "options": [
+          "Watching tutorials or videos",
+          "Reading documentation or textbooks",
+          "Just building something and figuring it out",
+          "Pair-programming or working with others"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "COMPLETENESS",
+      "prompt": "What programming language do you feel most comfortable in right now? (Type 'none yet' if you're just starting out.)",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Where do you picture yourself five years after graduation?",
+      "config": {
+        "options": [
+          "At a large tech company (big enterprise / FAANG-style)",
+          "At a startup — maybe one I co-founded",
+          "In graduate school or research",
+          "I honestly have no idea yet"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "Binary search on a sorted list of one million items requires at most about 20 comparisons. True or false?",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of these data structures gives O(1) average-case lookup time?",
+      "config": {
+        "options": [
+          "Hash table",
+          "Sorted linked list",
+          "Binary search tree",
+          "Stack"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, 0.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following are core principles of object-oriented programming (OOP)? Select all that apply.",
+      "config": {
+        "options": [
+          "Encapsulation",
+          "Recursion",
+          "Inheritance",
+          "Sorting",
+          "Polymorphism"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these tools or technologies have you already used before starting this program? Select all that apply.",
+      "config": {
+        "options": [
+          "Git / version control",
+          "Linux or a command-line terminal",
+          "SQL or a database",
+          "A web framework (React, Django, Flask, etc.)",
+          "Docker or containers"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Sci-Fi & Fantasy: A Galaxy of Geekdom",
+    "description": "From a galaxy far, far away to Middle-earth and beyond. Ten questions across the greatest universes ever imagined.",
+    "max_players": 150
+  },
+  "questions": [
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the name of Han Solo's iconic starship in the Star Wars universe?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": [
+          "Millennium Falcon",
+          "millennium falcon",
+          "the Millennium Falcon",
+          "Millenium Falcon",
+          "millenium falcon"
+        ],
+        "answerPoints": [1.0, 1.0, 1.0, 1.0, 1.0],
+        "editDistance": 2
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "In Douglas Adams' The Hitchhiker's Guide to the Galaxy, what is the answer to 'the ultimate question of life, the universe, and everything'?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["42", "forty-two", "forty two"],
+        "answerPoints": [1.0, 1.0, 1.0],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "In The Matrix, Neo is offered a choice between a red pill and a blue pill. Taking the red pill reveals the truth about the Matrix.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the famous Vulcan salutation associated with Mr. Spock in Star Trek? (Full phrase)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": [
+          "Live long and prosper",
+          "live long and prosper"
+        ],
+        "answerPoints": [1.0, 1.0],
+        "editDistance": 3
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In Harry Potter and the Deathly Hallows, which of the three Hallows is described as the most powerful wand ever created?",
+      "config": {
+        "options": [
+          "The Invisibility Cloak",
+          "The Resurrection Stone",
+          "The Elder Wand",
+          "The Sword of Gryffindor"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 1.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "In Game of Thrones, the words 'Winter is coming' are the official house motto of House Stark of Winterfell.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the full name of the teenage girl who volunteers as tribute and narrates Suzanne Collins' The Hunger Games trilogy?",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": [
+          "Katniss Everdeen",
+          "katniss everdeen",
+          "Katniss",
+          "katniss"
+        ],
+        "answerPoints": [1.0, 1.0, 1.0, 1.0],
+        "editDistance": 2
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "In Frank Herbert's Dune, what is the name of the rare, consciousness-expanding spice found only on the desert planet Arrakis that makes interstellar travel possible? (One word)",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": ["melange", "mélange", "Melange", "spice", "the spice"],
+        "answerPoints": [1.0, 1.0, 1.0, 1.0, 1.0],
+        "editDistance": 2
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In the Disney+ series The Mandalorian, what is the official name of the character fans affectionately call 'Baby Yoda'?",
+      "config": {
+        "options": [
+          "Yodaling",
+          "Grogu",
+          "Yaddle",
+          "The Asset"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 1.0, 0.0, 0.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "In the Marvel universe, Captain America's nearly indestructible shield is made from what fictional metal?",
+      "config": {
+        "options": [
+          "Adamantium",
+          "Mithril",
+          "Titanium-X",
+          "Vibranium"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [0.0, 0.0, 0.0, 1.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following are actual houses at Hogwarts in the Harry Potter series? Select all that apply.",
+      "config": {
+        "options": [
+          "Gryffindor",
+          "Ravenclaw",
+          "Durmstrang",
+          "Hufflepuff",
+          "Slytherin"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, 1.0, -1.0, 1.0, 1.0]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 4.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of the following characters are members of the Fellowship of the Ring in Tolkien's The Lord of the Rings? Select all that apply.",
+      "config": {
+        "options": [
+          "Frodo Baggins",
+          "Saruman",
+          "Legolas",
+          "Sauron",
+          "Boromir"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [1.0, -1.0, 1.0, -1.0, 1.0]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these fictional universes would you most want to live in? Select all that apply.",
+      "config": {
+        "options": [
+          "The Star Wars galaxy",
+          "Middle-earth (Lord of the Rings)",
+          "The Marvel universe (MCU)",
+          "The Wizarding World (Harry Potter)",
+          "The Star Trek universe"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "format": "buzzer/game",
+  "version": 1,
+  "game": {
+    "title": "Coordinate Geometry Check-In",
+    "description": "A 15-minute warm-up for algebra and geometry: solve each problem, then mark or type the answer. Most questions use the coordinate grid from −5 to 5.",
+    "max_players": 100
+  },
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the slope of the line through (1, 2) and (3, 8)?",
+      "config": {
+        "options": [
+          "2",
+          "3",
+          "4",
+          "6"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "time_limit_seconds": 25,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "ACCURACY",
+      "prompt": "True or false: y = 2x + 1 and y = 2x − 4 are parallel lines.",
+      "config": {},
+      "answer_data": {
+        "answer_points": {
+          "true": 1.0,
+          "false": 0.0
+        }
+      },
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "ACCURACY",
+      "prompt": "What is the y-intercept of y = 3x − 7? Type a number.",
+      "config": {},
+      "answer_data": {
+        "acceptedAnswers": [
+          "-7",
+          "−7"
+        ],
+        "answerPoints": [
+          1.0,
+          1.0
+        ],
+        "editDistance": 0
+      },
+      "time_limit_seconds": 30,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "ACCURACY",
+      "prompt": "Which of these points lie on the parabola y = x²? Select all that apply.",
+      "config": {
+        "options": [
+          "(2, 4)",
+          "(-2, 4)",
+          "(3, 6)",
+          "(0, 0)",
+          "(1, -1)"
+        ]
+      },
+      "answer_data": {
+        "answer_points": [
+          1.0,
+          1.0,
+          -1.0,
+          1.0,
+          -1.0
+        ]
+      },
+      "time_limit_seconds": 30,
+      "points_value": 3.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Mark the center of the circle (x − 2)² + (y + 3)² = 16.",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": 2,
+          "y": -3
+        }
+      },
+      "time_limit_seconds": 45,
+      "points_value": 2.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Mark the vertex of the parabola y = x² + 2x − 3.",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": -1,
+          "y": -4
+        }
+      },
+      "time_limit_seconds": 45,
+      "points_value": 2.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "f(x) = 2x − 3. Mark the point on the graph of f where x = 4.",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      "time_limit_seconds": 45,
+      "points_value": 2.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Mark where the lines y = x + 1 and y = −x + 3 intersect.",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "time_limit_seconds": 45,
+      "points_value": 2.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Mark the midpoint of the segment from A(−4, 1) to B(2, 5).",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": -1,
+          "y": 3
+        }
+      },
+      "time_limit_seconds": 45,
+      "points_value": 2.0
+    },
+    {
+      "type": "pin_drop",
+      "grading_type": "ACCURACY",
+      "prompt": "Reflect the point P(3, −2) across the y-axis and mark its image.",
+      "config": {},
+      "answer_data": {
+        "target": {
+          "x": -3,
+          "y": -2
+        }
+      },
+      "time_limit_seconds": 45,
+      "points_value": 2.0
+    },
+    {
+      "type": "closest_guess",
+      "grading_type": "ACCURACY",
+      "prompt": "Estimate the area of a circle with radius 4.",
+      "config": {
+        "unit": "square units"
+      },
+      "answer_data": {
+        "correct": 50.27,
+        "fullTolerance": 0.5,
+        "partialTolerance": 5
+      },
+      "time_limit_seconds": 45,
+      "points_value": 2.0
+    },
+    {
+      "type": "multiple_choice",
+      "grading_type": "COMPLETENESS",
+      "prompt": "To find where two lines cross, which method would you try first?",
+      "config": {
+        "options": [
+          "Graphing",
+          "Substitution",
+          "Elimination",
+          "Guess and check"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "true_false",
+      "grading_type": "COMPLETENESS",
+      "prompt": "True or false: I check my answer by plugging it back into the equation.",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 15,
+      "points_value": 1.0
+    },
+    {
+      "type": "multi_select",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Which of these graphs have you drawn by hand before? Select all that apply.",
+      "config": {
+        "options": [
+          "Lines",
+          "Parabolas",
+          "Circles",
+          "Absolute value"
+        ]
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "fill_in_the_blank",
+      "grading_type": "COMPLETENESS",
+      "prompt": "Name one real-world object shaped like a parabola.",
+      "config": {},
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    },
+    {
+      "type": "closest_guess",
+      "grading_type": "COMPLETENESS",
+      "prompt": "How confident are you with coordinate geometry, from 0 to 10?",
+      "config": {
+        "unit": "out of 10"
+      },
+      "answer_data": {},
+      "time_limit_seconds": 20,
+      "points_value": 1.0
+    }
+  ]
+}
