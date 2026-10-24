@@ -1,0 +1,10 @@
+Alembic migration environment for Buzzer.
+
+Run migrations:
+  alembic upgrade head
+
+Generate a new migration after model changes:
+  alembic revision --autogenerate -m "description"
+
+Downgrade one step:
+  alembic downgrade -1

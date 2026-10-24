@@ -1,0 +1,89 @@
+from __future__ import annotations
+
+from datetime import datetime
+from typing import TYPE_CHECKING
+
+import sqlalchemy as sa
+from sqlalchemy import DateTime, Enum, ForeignKey, Integer, JSON, String, Text, func
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from ..database import Base
+
+if TYPE_CHECKING:
+    from .course import Course
+    from .session import GameSession, SessionScore
+    from .user import User, UserGameAccess
+
+
+class Game(Base):
+    __tablename__ = "games"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    # Immutable once set: a quiz belongs to exactly one course (T4 design §2).
+    course_id: Mapped[int] = mapped_column(
+        ForeignKey("courses.id"), nullable=False, index=True
+    )
+    title: Mapped[str] = mapped_column(String(255), nullable=False)
+    description: Mapped[str] = mapped_column(
+        Text, nullable=False, default="", server_default=sa.text("''")
+    )
+    max_players: Mapped[int] = mapped_column(Integer, default=150, nullable=False)
+    # NULL = active; a timestamp = archived (read-only, can't start rooms).
+    archived_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+    course: Mapped[Course] = relationship("Course")
+
+    questions: Mapped[list[Question]] = relationship(
+        "Question",
+        back_populates="game",
+        cascade="all, delete-orphan",
+        order_by="Question.order_index",
+    )
+    sessions: Mapped[list[GameSession]] = relationship(
+        "GameSession", back_populates="game"
+    )
+    user_access: Mapped[list[UserGameAccess]] = relationship(
+        "UserGameAccess", back_populates="game", cascade="all, delete-orphan"
+    )
+
+
+class Question(Base):
+    __tablename__ = "questions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    game_id: Mapped[int] = mapped_column(
+        ForeignKey("games.id", ondelete="CASCADE"), nullable=False
+    )
+    type: Mapped[str] = mapped_column(String(50), nullable=False)
+    grading_type: Mapped[str] = mapped_column(
+        Enum("ACCURACY", "COMPLETENESS", name="grading_type"), nullable=False
+    )
+    prompt: Mapped[str] = mapped_column(Text, nullable=False)
+    config: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    answer_data: Mapped[dict] = mapped_column(JSON, nullable=False, default=dict)
+    time_limit_seconds: Mapped[int] = mapped_column(Integer, default=30, nullable=False)
+    points_value: Mapped[float] = mapped_column(sa.Float, default=1.0, nullable=False)
+    order_index: Mapped[int] = mapped_column(Integer, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+    game: Mapped[Game] = relationship("Game", back_populates="questions")
+    scores: Mapped[list[SessionScore]] = relationship(
+        "SessionScore", back_populates="question"
+    )
+
+
+class UserGameAccess(Base):
+    """Legacy per-game grant. Kept so the table isn't dropped; nothing reads it for access."""
+
+    __tablename__ = "user_game_access"
+
+    user_id: Mapped[str] = mapped_column(
+        String(36), ForeignKey("users.id", ondelete="CASCADE"), primary_key=True
+    )
+    game_id: Mapped[int] = mapped_column(
+        ForeignKey("games.id", ondelete="CASCADE"), primary_key=True
+    )
+
+    user: Mapped[User] = relationship("User", back_populates="game_access")
+    game: Mapped[Game] = relationship("Game", back_populates="user_access")
