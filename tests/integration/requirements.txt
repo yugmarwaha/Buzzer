@@ -1,0 +1,7 @@
+pytest>=7.4
+pytest-asyncio>=0.23
+httpx>=0.26
+python-socketio[asyncio_client]>=5.10
+aiohttp>=3.9
+python-dotenv>=1.0
+Pillow>=11.0  # T8 tests build images
