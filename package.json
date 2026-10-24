@@ -1,0 +1,17 @@
+{
+  "name": "buzzer",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --names host,player,admin --prefix-colors cyan,green,magenta \"npm run dev --prefix frontend/host\" \"npm run dev --prefix frontend/player\" \"npm run dev --prefix frontend/admin\"",
+    "dev:host": "npm run dev --prefix frontend/host",
+    "dev:player": "npm run dev --prefix frontend/player",
+    "dev:admin": "npm run dev --prefix frontend/admin",
+    "build": "npm run build --prefix frontend/host && npm run build --prefix frontend/player && npm run build --prefix frontend/admin",
+    "install:all": "npm install --prefix frontend/host && npm install --prefix frontend/player && npm install --prefix frontend/admin",
+    "check:theme": "node frontend/scripts/check-theme.mjs",
+    "check:colors": "node frontend/scripts/check-raw-colors.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

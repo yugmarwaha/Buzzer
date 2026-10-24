@@ -1,0 +1,8 @@
+# Force LF line endings on checkout regardless of a student's local
+# core.autocrlf setting. Windows' common core.autocrlf=true default silently
+# rewrites text files to CRLF on checkout -- harmless for most files, but it
+# breaks scripts/setup_venv.sh (a CRLF'd heredoc terminator can fail to match)
+# and any other shell script run via bash, including inside Docker if one
+# were ever copied into an image verbatim.
+* text=auto eol=lf
+*.sh text eol=lf
