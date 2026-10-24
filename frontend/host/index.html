@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buzzer — Host</title>
+    <meta name="theme-color" content="#0c1416" /> <!-- theme-exempt: initial value, the script keeps it in sync -->
+    <script>
+      (function () {
+        var KEY = 'buzzer-theme';
+        var root = document.documentElement;
+        var mq = window.matchMedia('(prefers-color-scheme: light)');
+        var following = true;
+        var COLOR = {
+          light: '#ecf4f3', // theme-exempt: must equal --page in the light theme
+          dark: '#0c1416', // theme-exempt: must equal --page in the dark theme
+        };
+        function stored() {
+          try {
+            var v = localStorage.getItem(KEY);
+            return v === 'light' || v === 'dark' ? v : null;
+          } catch (e) { return null; }
+        }
+        function apply(theme) {
+          root.dataset.theme = theme;
+          // First paint matches the resolved theme before theme.css loads.
+          root.style.colorScheme = theme;
+          root.style.background = COLOR[theme];
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', COLOR[theme]);
+        }
+        var saved = stored();
+        following = !saved;
+        apply(saved || (mq.matches ? 'light' : 'dark'));
+        mq.addEventListener('change', function () {
+          if (following) apply(mq.matches ? 'light' : 'dark');
+        });
+        window.addEventListener('storage', function (e) {
+          if (e.key !== null && e.key !== KEY) return; // null key = storage cleared
+          var v = stored();
+          if (v) { following = false; apply(v); }
+          else { following = true; apply(mq.matches ? 'light' : 'dark'); }
+        });
+        window.buzzerTheme = {
+          set: function (theme) {
+            following = false;
+            apply(theme);
+            try { localStorage.setItem(KEY, theme); } catch (e) { /* storage unavailable */ }
+          },
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

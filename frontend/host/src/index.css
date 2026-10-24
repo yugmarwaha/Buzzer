@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+/* The page color sits on <html> (theme.css); body stays transparent so the shared
+   backdrop (body::before: gradient plus accent blobs) shows through behind glass surfaces. */
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: transparent;
+  color: rgb(var(--primary));
+}
