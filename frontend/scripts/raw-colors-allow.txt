@@ -1,0 +1,3 @@
+# Files not yet converted to tokens, one repo-relative path per line, `#` comments allowed.
+# Empty on purpose: every screen is converted. Add a path only for a screen that is mid-conversion,
+# and empty it again before submission (docs/plans/ui-themes.md 3.6).

@@ -1,0 +1,279 @@
+/*
+  Buzzer design tokens, shared by the host, player and admin apps.
+  Source of truth for every color. Values are space-separated RGB channels so Tailwind
+  opacity modifiers work (see tailwind.preset.ts). Hex comments are for humans only.
+  Dark is the baseline theme (teal); the light theme is the :root[data-theme="light"] block. Spec: docs/plans/ui-themes.md.
+
+  Token kinds (check-theme.mjs relies on these prefixes):
+  - color tokens: three 0-255 RGB channels, defined in BOTH theme blocks, mapped in the preset.
+  - themed non-color tokens: --shadow-*, --alpha-* (defined in BOTH theme blocks).
+  - static tokens: --dur-*, --ease-*, --blur-*, --stagger-* (one :root block, same in both themes).
+  Visual refresh (glass, motion, type, radius, elevation): docs/plans/ui-themes.md section 12.
+*/
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --shadow-card: none; /* legacy single level; dark stays flat for old cards */
+  --page: 12 20 22;         /* #0c1416 */
+  --page-2: 9 16 24;        /* #091018 gradient end of the page backdrop */
+  --surface: 20 32 31;      /* #14201f */
+  --raised: 31 48 47;       /* #1f302f */
+  --line: 47 70 69;         /* #2f4645 (was #2a3f3e: lifted so borders hold on glass) */
+  --line-strong: 107 140 137;  /* #6b8c89 */
+  --primary: 240 253 250;      /* #f0fdfa */
+  --secondary: 208 223 222;    /* #d0dfde */
+  --muted: 160 182 180;        /* #a0b6b4 (was #8fa8a6: less faint) */
+  --accent: 15 118 110;       /* #0f766e */
+  --accent-hover: 17 94 89; /* #115e59 */
+  --accent-fg: 255 255 255;    /* #ffffff */
+  --accent-hint: 16 48 45;  /* #10302d */
+  --accent-text: 94 234 212;  /* #5eead4 */
+  --success: 74 222 128;      /* #4ade80 */
+  --success-tint: 18 48 31; /* #12301f */
+  --warning: 251 191 36;      /* #fbbf24 */
+  --warning-fg: 66 32 6;   /* #422006 */
+  --warning-tint: 51 41 15; /* #33290f */
+  --danger: 248 113 113;       /* #f87171 */
+  --danger-fg: 69 10 10;    /* #450a0a */
+  --danger-hover: 252 165 165; /* #fca5a5 */
+  --danger-tint: 58 28 31;  /* #3a1c1f */
+  --ring: 94 234 212;         /* #5eead4 */
+  --timer-1: 74 222 128;      /* #4ade80 */
+  --timer-2: 251 191 36;      /* #fbbf24 */
+  --timer-4: 248 113 113;      /* #f87171 */
+  --timer-track: 35 54 53;  /* #233635 */
+  --track: 6 11 12;         /* #060b0c empty chart bar / progress track: an inset well, darker than the page */
+
+  /* Glass: tint, hairline edge, inner top highlight, and the page backdrop blobs. */
+  --glass: 22 36 36;            /* #162424 */
+  --glass-edge: 148 196 191;    /* #94c4bf, used at --alpha-glass-edge */
+  --glass-highlight: 255 255 255; /* #ffffff, used at --alpha-glass-highlight */
+  --blob-1: 20 184 166;         /* #14b8a6 teal */
+  --blob-2: 14 116 144;         /* #0e7490 deep cyan */
+  --blob-3: 79 70 229;          /* #4f46e5 indigo */
+
+  --alpha-glass: 0.66;
+  --alpha-glass-strong: 0.84;
+  --alpha-glass-subtle: 0.42;
+  --alpha-glass-edge: 0.16;
+  --alpha-glass-highlight: 0.07;
+  --alpha-blob: 0.14;
+
+  /* Elevation: dark needs deeper, darker shadows to read at all. */
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.30), 0 1px 1px rgb(0 0 0 / 0.20);
+  --shadow-raised: 0 2px 4px rgb(0 0 0 / 0.30), 0 8px 20px -4px rgb(0 0 0 / 0.40);
+  --shadow-float: 0 4px 10px rgb(0 0 0 / 0.30), 0 18px 40px -8px rgb(0 0 0 / 0.55);
+  --shadow-overlay: 0 8px 16px rgb(0 0 0 / 0.35), 0 32px 72px -12px rgb(0 0 0 / 0.65);
+  --shadow-glow: 0 0 0 1px rgb(var(--accent-text) / 0.18), 0 8px 24px -6px rgb(var(--accent-text) / 0.35);
+  --shadow-button: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 1px 2px rgb(0 0 0 / 0.35);
+}
+
+/* Light theme: option B (teal on cool neutrals). Same token names as dark. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --shadow-card: 0 1px 2px rgb(15 40 38 / 0.06), 0 6px 16px rgb(15 40 38 / 0.07); /* legacy single level */
+  --page: 236 244 243; /* #ecf4f3 (was #f4faf9: white cards now separate from the page) */
+  --page-2: 232 240 245; /* #e8f0f5 */
+  --surface: 255 255 255; /* #ffffff */
+  --raised: 236 245 244; /* #ecf5f4 */
+  --line: 196 214 211; /* #c4d6d3 (was #d3e4e2: visible on white) */
+  --line-strong: 95 127 124; /* #5f7f7c */
+  --primary: 11 31 30; /* #0b1f1e */
+  --secondary: 40 64 62; /* #28403e */
+  --muted: 66 89 87; /* #425957 (was #4a6361) */
+  --accent: 15 118 110; /* #0f766e */
+  --accent-hover: 17 94 89; /* #115e59 */
+  --accent-fg: 255 255 255; /* #ffffff */
+  --accent-hint: 204 251 241; /* #ccfbf1 */
+  --accent-text: 13 98 92; /* #0d625c (was #0f766e: holds 4.5 on the tinted backdrop) */
+  --success: 20 112 54; /* #147036 (was #15803d: holds 4.5 on glass over the blobs) */
+  --success-tint: 220 252 231; /* #dcfce7 */
+  --warning: 161 72 6; /* #a14806 (was #b45309: holds 4.5 on the tinted page) */
+  --warning-fg: 255 255 255; /* #ffffff */
+  --warning-tint: 254 243 199; /* #fef3c7 */
+  --danger: 185 28 28; /* #b91c1c */
+  --danger-fg: 255 255 255; /* #ffffff */
+  --danger-hover: 153 27 27; /* #991b1b */
+  --danger-tint: 254 226 226; /* #fee2e2 */
+  --ring: 15 118 110; /* #0f766e */
+  --timer-1: 21 128 61; /* #15803d */
+  --timer-2: 161 72 6; /* #a14806 */
+  --timer-4: 185 28 28; /* #b91c1c */
+  --timer-track: 214 230 228; /* #d6e6e4 */
+  --track: 207 223 221; /* #cfdfdd */
+
+  --glass: 255 255 255;           /* #ffffff */
+  --glass-edge: 15 60 56;         /* #0f3c38, used at --alpha-glass-edge */
+  --glass-highlight: 255 255 255; /* #ffffff */
+  --blob-1: 153 246 228;          /* #99f6e4 */
+  --blob-2: 186 230 253;          /* #bae6fd */
+  --blob-3: 199 210 254;          /* #c7d2fe */
+
+  --alpha-glass: 0.68;
+  --alpha-glass-strong: 0.86;
+  --alpha-glass-subtle: 0.45;
+  --alpha-glass-edge: 0.12;
+  --alpha-glass-highlight: 0.9;
+  --alpha-blob: 0.5;
+
+  --shadow-soft: 0 1px 2px rgb(15 40 38 / 0.07), 0 1px 1px rgb(15 40 38 / 0.04);
+  --shadow-raised: 0 1px 3px rgb(15 40 38 / 0.08), 0 8px 20px -6px rgb(15 40 38 / 0.14);
+  --shadow-float: 0 2px 6px rgb(15 40 38 / 0.08), 0 18px 40px -10px rgb(15 40 38 / 0.22);
+  --shadow-overlay: 0 4px 12px rgb(15 40 38 / 0.10), 0 32px 72px -16px rgb(15 40 38 / 0.32);
+  --shadow-glow: 0 0 0 1px rgb(var(--accent) / 0.12), 0 8px 22px -6px rgb(var(--accent) / 0.45);
+  --shadow-button: inset 0 1px 0 rgb(255 255 255 / 0.22), 0 1px 2px rgb(15 40 38 / 0.18);
+}
+
+/* Static tokens: identical in both themes. */
+:root {
+  --dur-instant: 90ms;
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+  --dur-slow: 360ms;
+  --dur-slower: 600ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);      /* entering, settling */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);   /* moving between two states */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* pop, small overshoot */
+  --blur-glass: 18px;
+  --blur-glass-strong: 24px;
+  --blur-glass-subtle: 10px;
+  --stagger-step: 55ms;
+}
+
+/* ------------------------------------------------------------------ global rules (all apps) */
+
+html {
+  background-color: rgb(var(--page));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+*:focus-visible {
+  outline: 2px solid rgb(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Page backdrop: a soft gradient plus three blurred accent blobs, fixed behind all content,
+   so glass surfaces have something to blur. Pages must not paint an opaque full-screen
+   bg-page wrapper over it. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(55vmax 45vmax at 8% -6%, rgb(var(--blob-1) / var(--alpha-blob)), transparent 70%),
+    radial-gradient(50vmax 40vmax at 102% 18%, rgb(var(--blob-2) / var(--alpha-blob)), transparent 70%),
+    radial-gradient(60vmax 45vmax at 55% 112%, rgb(var(--blob-3) / calc(var(--alpha-blob) * 0.8)), transparent 70%),
+    linear-gradient(180deg, rgb(var(--page)), rgb(var(--page-2)));
+}
+
+/* ------------------------------------------------------------------ glass surfaces
+   Use one of .glass / .glass-strong / .glass-subtle with a rounded-* class and padding.
+   Do not add shadow-* or bg-* utilities on top: they replace the highlight or the tint.
+   Text on glass: primary, secondary, muted, accent-text and the status colors all pass 4.5:1. */
+
+.glass,
+.glass-strong,
+.glass-subtle {
+  --glass-a: var(--alpha-glass);
+  --glass-blur: var(--blur-glass);
+  background-color: rgb(var(--glass) / var(--glass-a));
+  border: 1px solid rgb(var(--glass-edge) / var(--alpha-glass-edge));
+  box-shadow: inset 0 1px 0 rgb(var(--glass-highlight) / var(--alpha-glass-highlight)), var(--shadow-raised);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+}
+.glass-strong {
+  --glass-a: var(--alpha-glass-strong);
+  --glass-blur: var(--blur-glass-strong);
+  box-shadow: inset 0 1px 0 rgb(var(--glass-highlight) / var(--alpha-glass-highlight)), var(--shadow-float);
+}
+.glass-subtle {
+  --glass-a: var(--alpha-glass-subtle);
+  --glass-blur: var(--blur-glass-subtle);
+  box-shadow: inset 0 1px 0 rgb(var(--glass-highlight) / var(--alpha-glass-highlight)), var(--shadow-soft);
+}
+
+/* Solid fallback: no backdrop blur, or the user asks for less transparency. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass, .glass-strong, .glass-subtle { background-color: rgb(var(--surface)); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass, .glass-strong, .glass-subtle {
+    background-color: rgb(var(--surface));
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  body::before { background: linear-gradient(180deg, rgb(var(--page)), rgb(var(--page-2))); }
+}
+
+/* ------------------------------------------------------------------ motion
+   Keyframes live here (always present); tailwind.preset.ts maps animate-* names to them. */
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes slide-down { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: none; } }
+@keyframes scale-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes pop {
+  0% { opacity: 0; transform: scale(0.85); }
+  60% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes pulse-soft { 0%, 100% { opacity: 1; transform: none; } 50% { opacity: 0.72; transform: scale(1.03); } }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@keyframes tick { from { opacity: 0; transform: translateY(40%); } to { opacity: 1; transform: none; } }
+@keyframes shake {
+  0%, 100% { transform: none; }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* Stagger: entrance animations (animate-fade-in, -slide-up, -slide-down, -scale-in, -pop) wait
+   var(--i) * var(--stagger-step) before they start. Put .stagger on a list to number its first
+   12 children, or set --i yourself with staggerStyle(n) from components/ui/motion.ts. */
+.stagger > :nth-child(2) { --i: 1; }
+.stagger > :nth-child(3) { --i: 2; }
+.stagger > :nth-child(4) { --i: 3; }
+.stagger > :nth-child(5) { --i: 4; }
+.stagger > :nth-child(6) { --i: 5; }
+.stagger > :nth-child(7) { --i: 6; }
+.stagger > :nth-child(8) { --i: 7; }
+.stagger > :nth-child(9) { --i: 8; }
+.stagger > :nth-child(10) { --i: 9; }
+.stagger > :nth-child(11) { --i: 10; }
+.stagger > :nth-child(n + 12) { --i: 11; }
+
+/* Hover lift for clickable cards and buttons. */
+.lift {
+  transition-property: transform, box-shadow, background-color, border-color, color;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-out);
+}
+.lift:hover { transform: translateY(-2px); box-shadow: var(--shadow-float); }
+.lift:active { transform: translateY(0) scale(0.98); transition-duration: var(--dur-instant); }
+
+/* Skeleton loading block. */
+.skeleton {
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, rgb(var(--raised)) 0%, rgb(var(--track)) 50%, rgb(var(--raised)) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* Reduced motion: no animation, no transition, no movement. Content still ends in its final state. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    /* Spinners keep turning so loading states do not look frozen. */
+    animation: none !important;
+  }
+  .animate-spin { animation: spin 1s linear infinite !important; }
+  button:active { transform: none !important; }
+  .lift:hover, .lift:active { transform: none !important; }
+}
