@@ -40,7 +40,8 @@ game/session lifecycle, scoring, Redis-backed live state, and report/CSV generat
 - `game_service.py` — room code generation, session lifecycle (create_room takes the course
   from the quiz; `start_game` and `complete_game` are compare-and-set; `end_room` is the one way
   to end an active room and then calls `room_ended_listeners`), question snapshots
-  (`session_questions`, `load_snapshot`, `mark_question_asked`), player authorization against
+  (`session_questions`, `load_snapshot`, `mark_question_asked`; `create_room` also copies the
+  quiz's `max_players` into the room blob, where the gateway reads the limit), player authorization against
   the course roster, scoring (`calculate_score`), answer recording (`record_answer` raises
   `ConflictError` if the room ended mid-insert, incl. the FK `IntegrityError` when an empty
   room was removed; any other `IntegrityError` is a generic "Could not record answer"; and
@@ -78,7 +79,11 @@ game/session lifecycle, scoring, Redis-backed live state, and report/CSV generat
 - `roster_service.py` — parses Canvas gradebook CSV exports (or pre-mapped rows) into
   `course_rosters`, upserting matches and deactivating netids absent from the latest upload.
 - `state_service.py` — Redis key schema and helpers for live game state: room metadata (90-min
-  TTL — see Gotchas), player set/scores, current question, per-question answered sets
+  TTL — see Gotchas), player set/scores (`add_player(max_players=...)` claims a seat in one Lua
+  script and returns False when the room is full; without `max_players` it admits everyone),
+  host presence shared by all workers (`add_host_socket` / `remove_host_socket` /
+  `host_connected` on `session:{id}:hosts`, and the `host_away` mark set while a grace period
+  runs), current question, per-question answered sets
   (`claim_answer` is the atomic SADD claim of a player's one answer, `release_answer` undoes it),
   answer-distribution counters (`decrement_answer_dist` for `revert_answer`), a short per-player
   lock (`lock:player:{id}:{user_id}`, same SET NX scheme) around both read-modify-writes of the

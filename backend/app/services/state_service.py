@@ -3,7 +3,9 @@ Redis-backed game state management with MySQL fallback.
 
 Key namespaces:
   room:{code}                    → room metadata JSON          TTL: 90 min (reset on any activity)
-  session:{id}:players           → Set of active user_ids
+  session:{id}:players           → Set of active user_ids (capped at the quiz's max_players)
+  session:{id}:hosts             → Set of connected HOST socket ids, shared by all workers
+  session:{id}:host_away         → flag while a host-disconnect grace period runs
   session:{id}:player:{user_id}  → player metadata JSON
   session:{id}:question          → current question state JSON
   session:{id}:answered:{qid}    → Set of user_ids who answered question qid
@@ -55,6 +57,14 @@ def _players_key(session_id: str) -> str:
 
 def _player_key(session_id: str, user_id: str) -> str:
     return f"session:{session_id}:player:{user_id}"
+
+
+def _hosts_key(session_id: str) -> str:
+    return f"session:{session_id}:hosts"
+
+
+def _host_away_key(session_id: str) -> str:
+    return f"session:{session_id}:host_away"
 
 
 def _question_key(session_id: str) -> str:
@@ -203,7 +213,13 @@ async def refresh_room_ttl(redis: Redis, code: str) -> None:
 
 async def delete_room_state(redis: Redis, code: str, session_id: str) -> None:
     """Clean up all keys for a completed/abandoned room."""
-    keys = [_room_key(code), _players_key(session_id), _question_key(session_id)]
+    keys = [
+        _room_key(code),
+        _players_key(session_id),
+        _question_key(session_id),
+        _hosts_key(session_id),
+        _host_away_key(session_id),
+    ]
     answered_keys = await redis.keys(f"session:{session_id}:answered:*")
     dist_keys = await redis.keys(f"session:{session_id}:dist:*")
     player_keys = await redis.keys(f"session:{session_id}:player:*")
@@ -231,6 +247,22 @@ async def claim_advance(
 # ---------------------------------------------------------------------------
 
 
+# Admit a player only while the room has a free seat. One script, so the size check and
+# the add are a single Redis step: concurrent joins can't both take the last seat.
+# Returns 1 if the player is in the set afterwards (newly added or already there), 0 if
+# the room is full.
+_ADD_PLAYER_CAPPED_LUA = """
+if redis.call("SISMEMBER", KEYS[1], ARGV[1]) == 1 then
+    return 1
+end
+if redis.call("SCARD", KEYS[1]) >= tonumber(ARGV[2]) then
+    return 0
+end
+redis.call("SADD", KEYS[1], ARGV[1])
+return 1
+"""
+
+
 async def add_player(
     redis: Redis,
     session_id: str,
@@ -238,7 +270,11 @@ async def add_player(
     display_name: str,
     is_guest: bool,
     score: int = 0,
-) -> None:
+    max_players: int | None = None,
+) -> bool:
+    """Add a player to the room. With max_players, the seat is claimed atomically and a
+    full room returns False with nothing written. Without it (rooms created before the
+    limit was stored) every player is admitted."""
     player_data = {
         "user_id": user_id,
         "display_name": display_name,
@@ -246,11 +282,17 @@ async def add_player(
         "score": score,
         "is_connected": True,
     }
-    await redis.sadd(_players_key(session_id), user_id)
+    if max_players is None:
+        await redis.sadd(_players_key(session_id), user_id)
+    elif not await redis.eval(
+        _ADD_PLAYER_CAPPED_LUA, 1, _players_key(session_id), user_id, max_players
+    ):
+        return False
     await redis.expire(_players_key(session_id), SESSION_KEY_TTL)
     await redis.set(
         _player_key(session_id, user_id), json.dumps(player_data), ex=SESSION_KEY_TTL
     )
+    return True
 
 
 # The player JSON holds both the score (answers) and is_connected (join/disconnect).
@@ -327,6 +369,41 @@ async def get_all_players(redis: Redis, session_id: str) -> list[dict]:
 
 async def get_player_count(redis: Redis, session_id: str) -> int:
     return await redis.scard(_players_key(session_id))
+
+
+# ---------------------------------------------------------------------------
+# Host presence
+# ---------------------------------------------------------------------------
+#
+# Which HOST sockets are connected is kept in Redis, not in one process's memory, so
+# every worker gives the same answer to "is a host still here?". A worker that dies
+# without running its disconnect handlers leaves its socket ids behind until the key's
+# TTL; such a room is then not auto-abandoned and ends through its own room TTL.
+
+
+async def add_host_socket(redis: Redis, session_id: str, sid: str) -> None:
+    await redis.sadd(_hosts_key(session_id), sid)
+    await redis.expire(_hosts_key(session_id), SESSION_KEY_TTL)
+
+
+async def remove_host_socket(redis: Redis, session_id: str, sid: str) -> None:
+    await redis.srem(_hosts_key(session_id), sid)
+
+
+async def host_connected(redis: Redis, session_id: str) -> bool:
+    """True if a HOST socket for this session is connected to any worker."""
+    return await redis.scard(_hosts_key(session_id)) > 0
+
+
+async def set_host_away(redis: Redis, session_id: str, ttl_seconds: int) -> None:
+    """Mark that players were told the host left (a grace period is running)."""
+    await redis.set(_host_away_key(session_id), "1", ex=ttl_seconds)
+
+
+async def clear_host_away(redis: Redis, session_id: str) -> bool:
+    """Clear the mark. True if it was set, so the caller knows players must be told the
+    host is back, also when the grace timer runs on another worker."""
+    return bool(await redis.delete(_host_away_key(session_id)))
 
 
 # ---------------------------------------------------------------------------
