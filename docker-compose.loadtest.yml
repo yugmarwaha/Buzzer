@@ -1,0 +1,63 @@
+# Isolated stack for scripts/load_test.py: production mode (no --reload, no SQL echo,
+# Redis-backed Socket.IO manager) with WORKERS backend processes and its own database.
+#
+#   WORKERS=4 docker compose -f docker-compose.loadtest.yml up -d --build --wait
+#   python scripts/load_test.py --base-url http://localhost:8020 \
+#       --stress-key local-load-test --players 250
+#   docker compose -f docker-compose.loadtest.yml down -v
+#
+# Reads the same .env as the dev stack (database passwords, JWT keys, admin account).
+# JWT keys must be set there: each worker would otherwise generate its own.
+name: buzzer_load
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      APP_ENV: production
+      # Lets the load test pass the per-IP rate limits; never set this in a real deployment.
+      STRESS_TEST_KEY: ${STRESS_TEST_KEY:-local-load-test}
+    ports:
+      - "${LOAD_PORT:-8020}:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      sh -c "alembic upgrade head &&
+             exec uvicorn app.main:asgi_app --host 0.0.0.0 --port 8000 --workers ${WORKERS:-4}"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(urllib.request.urlopen('http://localhost:8000/api/health').status != 200)"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 5s
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: buzzer
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    healthcheck:
+      # 127.0.0.1 = TCP: the image's first-run setup server listens on the socket only,
+      # and must not count as ready.
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "app_user", "-p${MYSQL_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  redis:
+    image: redis:7.0-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
