@@ -16,7 +16,7 @@ durable store; Redis holds live room state.
   - `main.py` — app entry: creates the FastAPI app, mounts the six routers under `/api`, and runs Redis init and admin bootstrap in the lifespan. Wraps the app with `sio` from `websocket/gateway.py` in its own `socketio.ASGIApp`.
   - `config.py` — `settings` (e.g. `is_development`, `is_stress_test_mode`, `STRESS_TEST_KEY`, `JWT_PRIVATE_KEY`/`JWT_PUBLIC_KEY`, `ADMIN_USERNAME`/`ADMIN_PASSWORD`).
   - `database.py` — async engine, `Base`, `get_db` (commits implicitly on clean return, rolls back on error), and `DbSession` — the alias every route uses (`Depends(get_db, scope="function")`), so the commit happens before the response is sent. Don't use bare `Depends(get_db)`: a mixed scope gives one request two DB sessions.
-  - `redis_client.py` — lazy shared Redis client (`get_redis`/`close_redis`). Imported by `main.py`, `routers/{auth,game,health,host}.py`, and `websocket/gateway.py`; `services/` receive the client as an argument rather than importing it.
+  - `redis_client.py` — lazy shared Redis client (`get_redis`/`close_redis`), built by `create_redis` on a **blocking** connection pool (`REDIS_MAX_CONNECTIONS`, `REDIS_POOL_WAIT_SECONDS`): redis-py's default pool raises when full, which dropped answers in a burst (`docs/load-testing.md`). Don't create clients with a bare `from_url`. Imported by `main.py`, `routers/{auth,game,health,host}.py`, and `websocket/gateway.py`; `services/` receive the client as an argument rather than importing it.
   - `migrations/` — Alembic (`env.py`, `versions/`).
 
 ## How it fits in

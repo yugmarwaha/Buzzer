@@ -56,6 +56,10 @@ Server → client: room-wide broadcasts (`new_question`, `question_results`, `ga
 
 **Room state writes are locked:** the room blob (`room:{code}`) is one JSON value that several handlers read, change and write back (advance, lock/unlock, the question timer, host disconnect/rejoin, `start_game`). Each such update runs under a short per-room Redis lock (`state.room_state_lock` / `state.update_room_state`: `SET lock:room:{code} <token> NX PX 3000`, released with a compare-and-delete script, bounded wait with backoff, logs and proceeds unlocked if it times out — except the `host_advance` writes, which then write nothing and send the host an `error` asking it to try again). Inside it there are only Redis reads/writes, never DB queries or emits. An advance re-reads the room under the lock and writes only if the room is still on the screen it started from; a lock click that arrives after the room left the open question writes nothing.
 
+**A room has a player limit:** `create_room` copies the quiz's `max_players` into the room blob, and a new player's `join_room` claims a seat with one Redis script (membership check, size check and add in a single step), so joins that arrive together can't both take the last seat. A full room answers with the `error` event "This room is full". A player who already has a seat is always let back in (reload, reconnect), and host sockets don't use a seat.
+
+**Host presence is shared between workers:** each HOST socket's id is in the Redis set `session:{id}:hosts`. The disconnect handler and the host-disconnect grace timer ask that set whether a host is still connected, so a second tab or a reconnect that landed on another backend worker counts. The timer checks again when it fires, because a host that came back through another worker can't cancel a task in this one. Question timers are still local to the worker that started them (see `backend/app/websocket/CLAUDE.md`).
+
 All names are defined once in `events.py` and imported everywhere — if you add an event, add it there.
 
 ## Seeing it live
@@ -68,6 +72,9 @@ python scripts/smoke_test_websocket.py
 
 # Fill a real room with simulated players (create a room in the Host app first):
 python scripts/simulate_players.py --room <CODE>
+
+# Whole game with N players, latency percentiles and a lost-answer check:
+python scripts/load_test.py --players 250
 ```
 
 Both scripts speak the socket protocol directly (no browser), so reading them is also the fastest way to learn the client side of the contract. The integration tests in `tests/integration/engine/socket_client.py` do the same thing under pytest.

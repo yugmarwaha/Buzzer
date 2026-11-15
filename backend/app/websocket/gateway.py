@@ -68,7 +68,8 @@ socket_app = socketio.ASGIApp(sio, socketio_path="socket.io")
 # Per-process in-memory state
 # ---------------------------------------------------------------------------
 
-# sid → {user_id, role, room_code, session_id}
+# sid → {user_id, role, room_code, session_id}. Only for sockets on this process: whether
+# a host is connected at all is read from Redis (state.host_connected), never from here.
 _sid_ctx: dict[str, dict[str, Any]] = {}
 
 # session_id → asyncio.Task (host disconnect abandon countdown)
@@ -632,13 +633,29 @@ def _cancel_timer(session_id: str) -> None:
         timer.cancel()
 
 
-def _host_socket_connected(session_id: str) -> bool:
-    """True if a HOST socket (host or admin) for this session is still registered on
-    this process — e.g. a second tab, or a reconnect on a new sid whose old sid only
-    times out later."""
-    return any(
-        c["role"] == "HOST" and c["session_id"] == session_id for c in _sid_ctx.values()
-    )
+async def _register_host_socket(redis, sid: str, user_id: str, session) -> None:
+    """Record a HOST socket that has entered its rooms: its context on this process, and
+    its presence in Redis, where every worker's disconnect handler and grace timer look
+    (a second tab, an admin, or a reconnect on another worker all count as "host here")."""
+    _sid_ctx[sid] = {
+        "user_id": user_id,
+        "role": "HOST",
+        "room_code": session.room_code,
+        "session_id": session.id,
+    }
+    await state.add_host_socket(redis, session.id, sid)
+
+
+async def _end_host_absence(redis, session_id: str, room_code: str) -> None:
+    """A host is joining: stop a grace timer on this process and, if players were told
+    the host left (by this or any other worker), tell them the host is back."""
+    task = _abandon_tasks.pop(session_id, None)
+    if task:
+        task.cancel()
+    was_away = await state.clear_host_away(redis, session_id)
+    if task or was_away:
+        logger.info("host_reconnected_abandon_cancelled", session_id=session_id)
+        await sio.emit(E.HOST_RECONNECTED, {}, to=room_code)
 
 
 async def _host_abandon_task(session_id: str, room_code: str) -> None:
@@ -647,6 +664,11 @@ async def _host_abandon_task(session_id: str, room_code: str) -> None:
     ABANDONED, and the room-ended listener notifies clients."""
     try:
         await asyncio.sleep(_HOST_GRACE_SECONDS)
+        # A host that came back through another worker can't cancel this task, so the
+        # shared presence set decides, not the task registry.
+        if await state.host_connected(await get_redis(), session_id):
+            logger.info("host_grace_ended_host_present", session_id=session_id)
+            return
         # The grace period is over: deregister so a host reconnecting from here on can't
         # cancel this task halfway through end_room (the end goes ahead; the host gets
         # game_abandoned like everyone else).
@@ -730,6 +752,8 @@ def _client_ip(environ: dict) -> str:
     return "unknown"
 
 
+_ROOM_FULL = "This room is full"
+
 _WS_RATE_LIMIT = 10  # max connections per window
 _WS_RATE_WINDOW = 10  # seconds
 
@@ -794,8 +818,10 @@ async def disconnect(sid: str) -> None:
     redis = await get_redis()
 
     if role == "HOST":
-        # Another host socket for this room is still here: the host hasn't left.
-        if _host_socket_connected(session_id):
+        await state.remove_host_socket(redis, session_id, sid)
+        # Another host socket for this room is still here (on any worker): the host
+        # hasn't left.
+        if await state.host_connected(redis, session_id):
             logger.info("host_socket_closed_other_connected", session_id=session_id)
             return
         room_state = await state.get_room_state(redis, room_code)
@@ -806,35 +832,37 @@ async def disconnect(sid: str) -> None:
             ):
                 current_q = await state.get_current_question(redis, session_id)
                 remaining = 0.0
+                locked = False
+                if current_q:
+                    async with state.room_state_lock(redis, room_code):
+                        # Under the room lock: re-check that no host joined meanwhile
+                        # and the question is still this one, open and unlocked; the
+                        # remaining time is computed here so it matches the write.
+                        rs = await state.get_room_state(redis, room_code)
+                        if (
+                            rs is not None
+                            and not await state.host_connected(redis, session_id)
+                            and rs.get("question_phase") == "QUESTION"
+                            and not rs.get("question_locked")
+                            and _question_in_sync(rs, current_q)
+                        ):
+                            started_at = datetime.fromisoformat(current_q["started_at"])
+                            if started_at.tzinfo is None:
+                                started_at = started_at.replace(tzinfo=timezone.utc)
+                            elapsed = (
+                                datetime.now(timezone.utc) - started_at
+                            ).total_seconds()
+                            remaining = max(
+                                0.0, current_q["time_limit_seconds"] - elapsed
+                            )
+                            _cancel_timer(session_id)
+                            rs["question_locked"] = True
+                            rs["timer_remaining_seconds"] = remaining
+                            rs["question_locked_by_disconnect"] = True
+                            await state.set_room_state(redis, room_code, rs)
+                            locked = True
 
-                def disconnect_lock(rs: dict) -> bool:
-                    # Under the room lock: re-check that no host joined meanwhile and the
-                    # question is still this one, open and unlocked; the remaining time is
-                    # computed here so it matches the moment of the write.
-                    nonlocal remaining
-                    if (
-                        _host_socket_connected(session_id)
-                        or rs.get("question_phase") != "QUESTION"
-                        or rs.get("question_locked")
-                        or not _question_in_sync(rs, current_q)
-                    ):
-                        return False
-                    started_at = datetime.fromisoformat(current_q["started_at"])
-                    if started_at.tzinfo is None:
-                        started_at = started_at.replace(tzinfo=timezone.utc)
-                    elapsed = (datetime.now(timezone.utc) - started_at).total_seconds()
-                    remaining = max(0.0, current_q["time_limit_seconds"] - elapsed)
-                    timer = _timer_tasks.pop(session_id, None)
-                    if timer:
-                        timer.cancel()
-                    rs["question_locked"] = True
-                    rs["timer_remaining_seconds"] = remaining
-                    rs["question_locked_by_disconnect"] = True
-                    return True
-
-                if current_q and await state.update_room_state(
-                    redis, room_code, disconnect_lock
-                ):
+                if locked:
                     await sio.emit(
                         E.QUESTION_LOCKED,
                         {
@@ -849,19 +877,29 @@ async def disconnect(sid: str) -> None:
                         remaining_seconds=remaining,
                     )
 
-            if _host_socket_connected(session_id):
+            if await state.host_connected(redis, session_id):
                 # A host joined while this handler was awaiting: undo our auto-lock
                 # (if any) the way a joining host does, and don't start the timer.
                 await _auto_unlock_for_host(redis, session_id, room_code)
                 return
-            # Register the timer before the next await (the emit), so a host joining
-            # from here on finds it in _abandon_tasks and cancels it. Cancelling any
+            # Register the timer, then mark the absence in Redis (a host joining through
+            # another worker clears the mark and tells the players). Cancelling any
             # previous entry keeps a stray timer from being orphaned.
             previous = _abandon_tasks.pop(session_id, None)
             if previous:
                 previous.cancel()
             task = asyncio.create_task(_host_abandon_task(session_id, room_code))
             _abandon_tasks[session_id] = task
+            await state.set_host_away(redis, session_id, _HOST_GRACE_SECONDS + 60)
+            if await state.host_connected(redis, session_id):
+                # A host joined during the two awaits above. Players were not told
+                # yet, so only undo: the timer, the mark and the auto-lock.
+                if _abandon_tasks.get(session_id) is task:
+                    _abandon_tasks.pop(session_id, None)
+                task.cancel()
+                await state.clear_host_away(redis, session_id)
+                await _auto_unlock_for_host(redis, session_id, room_code)
+                return
             abandon_at = (
                 datetime.now(timezone.utc) + timedelta(seconds=_HOST_GRACE_SECONDS)
             ).isoformat()
@@ -920,21 +958,12 @@ async def on_join_room(sid: str, data: dict) -> None:
                 await _emit_error(sid, "Not authorised as host for this session")
                 return
 
-            # Cancel any pending abandon grace period
-            task = _abandon_tasks.pop(session.id, None)
-            if task:
-                task.cancel()
-                # Players were told host_disconnected; clear their banner.
-                await sio.emit(E.HOST_RECONNECTED, {}, to=room_code)
+            # Cancel any pending abandon grace period and clear the players' banner.
+            await _end_host_absence(redis, session.id, room_code)
 
             await sio.enter_room(sid, room_code)
             await sio.enter_room(sid, _host_room(room_code))
-            _sid_ctx[sid] = {
-                "user_id": user.id,
-                "role": "HOST",
-                "room_code": room_code,
-                "session_id": session.id,
-            }
+            await _register_host_socket(redis, sid, user.id, session)
 
             # Now that the socket is in its rooms: record its sid and undo a disconnect
             # auto-lock, in one locked read-modify-write of the current room state.
@@ -968,14 +997,17 @@ async def on_join_room(sid: str, data: dict) -> None:
             existing = await state.get_player(redis, session.id, user.id)
             if existing:
                 await state.set_player_connected(redis, session.id, user.id, True)
-            else:
-                await state.add_player(
-                    redis,
-                    session.id,
-                    user.id,
-                    display_name,
-                    is_guest=(user.role == "GUEST"),
-                )
+            elif not await state.add_player(
+                redis,
+                session.id,
+                user.id,
+                display_name,
+                is_guest=(user.role == "GUEST"),
+                max_players=(room_state or {}).get("max_players"),
+            ):
+                await _emit_error(sid, _ROOM_FULL)
+                logger.info("join_refused_room_full", room=room_code, user_id=user.id)
+                return
 
             await sio.enter_room(sid, room_code)
             await sio.enter_room(sid, _user_room(user.id))
@@ -1140,20 +1172,11 @@ async def on_rejoin_room(sid: str, data: dict) -> None:
                 await _emit_error(sid, "Not authorised as host for this session")
                 return
 
-            task = _abandon_tasks.pop(session.id, None)
-            if task:
-                task.cancel()
-                logger.info("host_reconnected_abandon_cancelled", session_id=session.id)
-                await sio.emit(E.HOST_RECONNECTED, {}, to=room_code)
+            await _end_host_absence(redis, session.id, room_code)
 
             await sio.enter_room(sid, room_code)
             await sio.enter_room(sid, _host_room(room_code))
-            _sid_ctx[sid] = {
-                "user_id": user.id,
-                "role": "HOST",
-                "room_code": room_code,
-                "session_id": session.id,
-            }
+            await _register_host_socket(redis, sid, user.id, session)
 
             # Now that the socket is in its rooms: record its sid and undo a disconnect
             # auto-lock, in one locked read-modify-write of the current room state.
@@ -1180,13 +1203,16 @@ async def on_rejoin_room(sid: str, data: dict) -> None:
                 if session.status not in ("LOBBY", "IN_PROGRESS"):
                     await _emit_error(sid, "This game is not accepting players")
                     return
-                await state.add_player(
+                if not await state.add_player(
                     redis,
                     session.id,
                     user.id,
                     display_name,
                     is_guest=(user.role == "GUEST"),
-                )
+                    max_players=(room_state or {}).get("max_players"),
+                ):
+                    await _emit_error(sid, _ROOM_FULL)
+                    return
                 player_data = await state.get_player(redis, session.id, user.id)
                 # A first-time player via rejoin is new to the host, as in join_room.
                 await sio.emit(

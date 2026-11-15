@@ -8,6 +8,10 @@ class Settings(BaseSettings):
 
     DATABASE_URL: str = "mysql+asyncmy://app_user:password@mysql:3306/buzzer"
     REDIS_URL: str = "redis://redis:6379/0"
+    # Connections per backend process. A handler that finds them all in use waits up to
+    # REDIS_POOL_WAIT_SECONDS for one (see redis_client.create_redis).
+    REDIS_MAX_CONNECTIONS: int = 100
+    REDIS_POOL_WAIT_SECONDS: float = 20.0
 
     JWT_PRIVATE_KEY: str = ""
     JWT_PUBLIC_KEY: str = ""

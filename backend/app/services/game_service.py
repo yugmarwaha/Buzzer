@@ -140,6 +140,7 @@ async def create_room(
             "course_id": course_id,
             "host_user_id": host.id,
             "status": "LOBBY",
+            "max_players": game.max_players,
             "created_at": datetime.now(timezone.utc).isoformat(),
         },
     )

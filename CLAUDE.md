@@ -24,6 +24,9 @@ alembic upgrade head
 alembic revision --autogenerate -m "description"
 pytest
 pytest --cov=app
+# Unit tests (no stack). With REDIS_TEST_URL the real-Redis concurrency tests run too;
+# that database is FLUSHED, so use a throwaway server (see README "Unit tests").
+(cd tests/unit && PYTHONPATH=../../backend pytest -q)
 ruff check .
 ruff format .
 ```
@@ -44,6 +47,9 @@ npm run check:colors  # report raw colors outside tokens (add -- --strict to fai
 python scripts/seed_demo.py
 python scripts/simulate_players.py --room ABCDE1
 python scripts/smoke_test_websocket.py
+# Load test on the isolated production-mode stack (results: docs/load-testing.md)
+WORKERS=4 docker compose -f docker-compose.loadtest.yml up -d --build --wait
+python scripts/load_test.py --base-url http://localhost:8020 --stress-key local-load-test --players 500
 # Test-only cleanup of an integration-test quiz and/or images (Test Course only)
 docker compose exec -T backend python -m scripts.cleanup_test_quiz --game-id 42 --image-id 7
 # Course-ownership migration planning (read-only; see docs/design-host-admin.md §4)
@@ -84,4 +90,8 @@ conversation matches. `.claude/rules/` enforces: `no-code-during-design`, `sycop
 `ste-writing-style`, and `no-commit-without-approval` — see each file for what it does.
 
 Design docs live in `docs/plans/` and `docs/design-host-admin.md`. Realtime protocol notes are in
-`docs/realtime.md`.
+`docs/realtime.md`. Load-test method and measured results are in `docs/load-testing.md`.
+
+CI runs lint, type checks, and the unit tests against a real Redis in both `.gitlab-ci.yml` and
+`.github/workflows/ci.yml`. The integration tests run only in the GitHub workflow, on the compose
+stack (`scripts/ci_stack_env.sh`, `scripts/ci_wait_ready.sh`).

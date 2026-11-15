@@ -2,7 +2,7 @@
 
 A Jackbox-inspired real-time party quiz platform built for classroom use. A **Host** displays game state on a large screen while **Players** join and answer questions from their mobile browsers.
 
-- Up to 250 players per room, 50 concurrent rooms
+- Up to 500 players per room (each quiz sets its own limit, enforced on join; measured in `docs/load-testing.md`), 50 concurrent rooms
 - Multiple question types: multiple choice, true/false, fill in the blank, multi-select, pin drop (canvas), closest guess (number)
 - Two grading modes: accuracy-based and participation-based (completeness)
 - Local accounts and guest players (no account required)
@@ -265,6 +265,42 @@ The host-disconnect tests wait out the real grace period, so they **skip** unles
 under test runs with `HOST_GRACE_SECONDS<=10` (the default is 300). Set a short one in the
 test stack's backend environment, e.g. `HOST_GRACE_SECONDS=3` under `backend.environment` in
 its compose file (or in `.env` for a throwaway stack), then restart the backend.
+
+### Unit tests
+
+No stack needed. They cover scoring, auth, and the race-condition fixes with a fake Redis:
+
+```bash
+cd tests/unit && PYTHONPATH=../../backend python -m pytest -q
+```
+
+`test_real_redis.py` repeats the concurrency tests against a real Redis server (locks, the
+player limit, exactly-once claims, host presence, the connection pool under a burst). It is
+skipped unless `REDIS_TEST_URL` is set. The database it names is **flushed** before every test,
+so use a throwaway server:
+
+```bash
+docker run --rm -d --name buzzer-test-redis -p 6390:6379 redis:7.0-alpine
+cd tests/unit && REDIS_TEST_URL=redis://localhost:6390/15 \
+  PYTHONPATH=../../backend python -m pytest -q
+docker stop buzzer-test-redis
+```
+
+CI runs the unit tests with a real Redis on every merge request (`.gitlab-ci.yml`) and pull
+request (`.github/workflows/ci.yml`). The GitHub workflow also starts the compose stack and runs
+the integration tests.
+
+### Load test
+
+`scripts/load_test.py` plays a whole game with N simulated players, reports latency percentiles
+and fails if any answer is lost or any final score is wrong. See `docs/load-testing.md` for the
+isolated stack it runs against and the measured results.
+
+```bash
+WORKERS=4 docker compose -f docker-compose.loadtest.yml up -d --build --wait
+python scripts/load_test.py --base-url http://localhost:8020 --stress-key local-load-test --players 500
+docker compose -f docker-compose.loadtest.yml down -v
+```
 
 ### WebSocket smoke test
 

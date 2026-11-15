@@ -15,7 +15,7 @@ room join/rejoin, question phase transitions, answer submission, and disconnect/
   `disconnect`, `join_room`, `rejoin_room`, `host_advance` (drives the LOBBY→QUESTION→RESULTS→…
   state machine), `submit_answer`, `host_lock_question`. Owns per-process in-memory state
   (`_sid_ctx`, `_abandon_tasks`, `_timer_tasks`) and background tasks for question timers and
-  host-disconnect grace periods.
+  host-disconnect grace periods. Host presence is not per-process: it is read from Redis.
 
 ## How it fits in
 Sits alongside `routers/` under `backend/app` as the other half of the API surface — routers
@@ -35,9 +35,21 @@ Starlette's `Mount` strips the prefix and breaks socket.io's path matching.
   game-over payloads (from the snapshot configs, so old versions resolve). Clients never build
   URLs from ids; an id missing from the map shows "Image unavailable".
 - Per-process in-memory dicts (`_sid_ctx`, `_abandon_tasks`, `_timer_tasks`) are **not** shared
-  across instances. The module comment notes that in production, socket.io's Redis manager
-  routes events correctly across instances, but task bookkeeping (timers, abandon countdowns)
-  stays local to whichever process owns it — a scale-out deployment must keep that in mind.
+  across workers. In production, socket.io's Redis manager routes emits across workers, and
+  **host presence is shared through Redis** (`state.add_host_socket` / `host_connected`, set by
+  `_register_host_socket`): the disconnect handler and the grace timer ask Redis, so a host
+  socket on another worker counts. The grace timer re-checks presence when it fires (a host
+  back on another worker can't cancel the task), and `_end_host_absence` emits
+  `host_reconnected` from the `host_away` mark when the task lives elsewhere. Still local:
+  the **question timer**. A host that reconnects to a different worker mid-question can't cancel
+  the old worker's timer; that timer's auto-lock re-checks the room under the lock, but its
+  `answer_phase_ended` emit does not. A worker that dies leaves its host sids in Redis until
+  the key TTL, so that room is not auto-abandoned.
+- **Player limit:** a new player's seat is claimed in `state.add_player(max_players=...)` (one
+  Lua script; `max_players` comes from the room blob, written by `create_room`). A full room
+  answers `join_room`/`rejoin_room` with the `error` event "This room is full" and writes
+  nothing. A player already in the room is never refused (reload, reconnect), and HOST sockets
+  don't take a seat. A room blob without `max_players` (created before the limit) has no cap.
 - `_client_manager` deliberately uses no Redis pubsub manager (`None`) in development and
   `AsyncRedisManager` only in production, because the Redis-backed manager's pubsub listener
   was found to drop connections under idle load in dev.
@@ -164,6 +176,7 @@ Starlette's `Mount` strips the prefix and breaks socket.io's path matching.
   IN_PROGRESS session and starts a 5-minute (`_HOST_GRACE_SECONDS`) abandon countdown;
   reconnecting host or `rejoin_room` cancels the abandon task and auto-unlocks via
   `_auto_unlock_for_host`. It does none of this while another HOST socket for the same session
-  is still in `_sid_ctx` (`_host_socket_connected`: second tab, admin, or a reconnect whose old
-  sid times out later), and re-checks after its awaits, unlocking if a host joined meanwhile.
-  `_sid_ctx` is per-process, so with several workers a host socket on another worker isn't seen.
+  is still in the Redis presence set (`state.host_connected`: second tab, admin, a reconnect
+  whose old sid times out later, on any worker), and re-checks after its awaits (under the room
+  lock, before starting the timer, and after writing the `host_away` mark), undoing its work if
+  a host joined meanwhile.
